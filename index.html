@@ -1,1 +1,139 @@
-Testing
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ExCommute: The Excommunication of Excruciating Excursions</title>
+		
+		<script src = "https://code.jquery.com/jquery-2.2.0.min.js"></script>
+		
+		<script><!--Insert external javascript sheet here--></script>
+		 
+		 <!-- Compiled and minified CSS -->
+  		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+  		<!-- Compiled and minified JavaScript -->
+  		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+		
+		<link rel = "stylesheet" href = "css/style.css">
+	</head>
+	<body>
+		<div class = "container">
+			<div class = "nav-wrapper">
+				<div class = "row">	
+					<div class = "col m6">
+				  		<h1 class = "brand-logo center">ExCommute</h1>
+			  		</div>
+			  		<div class = "col m6">
+				 		 <ul id = "nav-mobile" class="collapsible popout left" data-collapsible="accordion">
+				   			 <li>
+				      			<div class="collapsible-header">Teenage Mutant Ninja Turtles</div>
+				      			<div class="collapsible-body"><span>The Brady Bunch</span></div>
+				   			 </li>
+				   			 <li>
+				      			<div class="collapsible-header">Power Rangers</div>
+				     			 <div class="collapsible-body"><span>The Addams Family</span></div>
+			    			</li>
+				    		<li>
+				      			<div class="collapsible-header">Big Bad Beetleborgs</div>
+				      			<div class="collapsible-body"><span>The Flinstones</span></div>
+				    		</li>
+				  		</ul>
+			  		</div>
+				</div>
+			</div>
+			<!--Code that doesn't work. Play around with this code more sometime to find out why
+			<div class = "row">	
+				<ul class = "collapsible-popout" data-collapsible = "accordion">
+					<li>
+						<div class = "collapsible-head">
+							<h4 class = "material-icons">The ideal tool for convenient commute to work for relocating residents</h4>	
+						</div>
+					</li>
+					<li>
+						<div class = "collapsible-body">
+						<p class = "material-icons">Moving is inherently a royal pain. Finding a new living space can be a royal pain. On top of all that, finding a living space conveniently close to your new workplace is just the sour cherry on top. The good news is, we can help pick that cherry off and make your move easier.</p>
+						</div>
+					</li>
+				</ul>
+			</div> -->
+			<div class = "row">	
+				
+				<img><!--This tag is the space containing the Google Map map-->
+
+ 				<!-- <ul class="collapsible popout" data-collapsible="accordion">
+    				<li>
+      					<div class="collapsible-header">The ideal tool for convenient commute to work for relocating residents</div>
+      					<div class="collapsible-body"><span>Moving is inherently a royal pain. Finding a new living space can be a royal pain. On top of all that, finding a living space conveniently close to your new workplace is just the sour cherry on top. The good news is, we can help pick that cherry off and make your move easier.</span></div>
+    				</li>
+  				</ul>-->
+
+			  <!-- Dropdown Trigger -->
+			  <a class='dropdown-button btn' href='#' data-activates='dropdown1'>The ideal tool for convenient commute to work for relocating residents</a>
+
+			  <!-- Dropdown Structure -->
+			  <ul id='dropdown1' class='dropdown-content'>
+			    <li>Moving is inherently a royal pain. Finding a new living space can be a royal pain. <br>On top of all that, finding a living space conveniently close to your new workplace is just the sour cherry on top. <br>The good news is, we can help pick that cherry off and make your move easier.</li>
+			  </ul>
+			</div>	
+			<div class="row">
+			    <form class="col s12">
+			      <div class="row">
+			        <div class="input-field col s6">
+			          <input placeholder="Placeholder" id="work_address" type="text" class="validate">
+			          <label for="work_address">New Work address</label>
+			        </div>
+			        <div class="input-field col s6">
+			          <input id="max_dist" type="text" class="validate">
+			          <label for="max_dist">Maximum Distance Desired</label>
+			        </div>
+			      </div>
+			      <div class="row">
+			        <div class="input-field col s12">
+			          <input id="zip" type="text" class="validate">
+			          <label for="zip">Zip Code</label>
+			        </div>
+			      </div>
+			      <div class="row">
+			        <div class="input-field col s12">
+			          <input id="city" type="text" class="validate">
+			          <label for="city">City</label>
+			        </div>
+			      </div>
+			      <div class="row">
+			        <div class="input-field col s12">
+			          <input id="state" type="text" class="validate">
+			          <label for="state">State</label>
+			        </div>
+			      </div>
+			      <div class="row">
+			        <div class="col s12">
+			          This is an inline input field:
+			          <div class="input-field inline">
+			            <input id="email" type="email" class="validate">
+			            <label for="email" data-error="wrong" data-success="right">Email</label>
+			          </div>
+			        </div>
+			      </div>
+			    </form>
+			  </div>
+		</div> <!--End the container-->
+		<script>
+		 $(document).ready(function (){
+			 /*The dialogue interacting w/ user*/
+		 	var dialogueDropdown = $('.dropdown-button').dropdown({
+			      inDuration: 300,
+			      outDuration: 225,
+			      constrainWidth: false, // Does not change width of dropdown to that of the activator
+			      hover: true, // Activate on hover
+			      gutter: 0, // Spacing from edge
+			      belowOrigin: false, // Displays dropdown below the button
+			      alignment: 'left', // Displays dropdown with edge aligned to the left of button
+			      stopPropagation: false // Stops event propagation
+				});	//end dialogueDropdown
+		 	var dropdownHeader = $("");
+		 	var dropdownBody = $("");
+		 	/*To use these inline you have to add them as data attributes. If you want more dynamic control, you can define them using the jQuery plugin below. */
+
+		 	 });//End document.ready
+		</script>
+	</body>
+</html>
