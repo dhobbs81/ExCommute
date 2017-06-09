@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Excommute prototype</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Wrong key, not all features activated
+script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmW7fmoiV52ahfr4s2gmYKVPsv8hEHk0g&callback=prepGMaps">
+</script -->
+
+
+<script src='assets/javascript/maps-demo.js'></script>
+<script src='assets/javascript/map.js'></script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACHyy4EKCvJRIlk3KM17nVdZCmltZUTGw&callback=prepGMaps"></script>
+
+
+
+
+</head>
+
+<body>
+
+<h1>ExCommute</h1>
+
+<div id="googleMap" style="width:100%;height:400px;"></div>
+
+<div id="Home-info">
+	<h2>House info:</h2>
+		<ul class="house-ul">
+		</ul>
+</div>
+
+<div>
+	<form id="workplace-form">
+	    <label for="workplace-name">Name of workplace</label>
+	    <input type="text" id="workplace-name" value="UCF Coding Bootcamp"><br>
+
+	    <label for="workplace-address">Address of workplace</label>
+	    <input type="text" id="workplace-address" value="3280 Progress Drive, Orlando, FL"><br>
+
+    	<input id="workplace-confirm" type="submit">
+	</form>
+</div>
+
+<div>
+	<form id="homes-form">
+	    <label for="homes-confirm">Click to confirm homes array to process and display on map:</label>
+    	<input id="homes-confirm" type="submit">
+	</form>
+
+</div>
+
+</body>
+</html>
