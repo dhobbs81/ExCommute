@@ -8,7 +8,7 @@
 "use strict";
 
 // Attach the main function that will run when the DOM is ready
-// The JQuery 3.0 API recommends this usage. Other uses are deprecated.
+// The JQuery 3.0 API recommends this usage Other uses are deprecated.
 $(main);
 
 /**  MAIN PROCESS
