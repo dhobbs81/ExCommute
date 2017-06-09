@@ -73,7 +73,9 @@ function prepGMaps() {
     }
   );
 
-  function housingAPICallback(homesCurr){
+  function housingAPICallback(passBackHomes){
+    console.log("Pass Back Homes", passBackHomes);
+    homesCurr = passBackHomes;
     if (haveMap == true){
       console.log('haveMap==true');
       geoMulti(homesCurr, function() {
@@ -139,8 +141,7 @@ function prepGMaps() {
 
 function geo(place, callback) {
   // Don't geocode if lat and lng are known. Store as Google loc.
-  console.log("geo function printing",place.lat, typeof(place.lat));
-
+  //console.log("geo function printing",place.lat, typeof(place.lat));
   if (typeof(place.lat) == 'number' && typeof(place.lng) == 'number')
   {
     console.log('lat and lng provided');
@@ -218,7 +219,7 @@ function deployHomes(homes) {
 
       google.maps.event.addListener(home.marker, 'click',
         function() {
-          $('.house-ul').html('<li>Name: ' + home.name + '</li>' +
+          $('.house-ul').html('<li>Address: ' + home.address + '</li>' +
             '<li>Price: $' + home.price + '</li>' +
             '<li>Travel time: ' + Math.floor(home.duration / 60) + 'minutes.</li>');
         }
@@ -238,6 +239,7 @@ function deployHomes(homes) {
 
 function getDistMatrix() {
   var dest = [];
+  console.log("HOMESCURR: ",homesCurr);
   homesCurr.forEach(
     function(home) {
       home.loc = new google.maps.LatLng(home.lat, home.lng);

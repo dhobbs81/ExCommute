@@ -10,16 +10,16 @@ function buildHouseObjects(housesJSON){
   for(let i=0; i<housesJSON.property.length; i++){
     var temp = housesJSON.property[i];
     var house = {
-      distance: temp.location.distance,
-      lat: temp.location.latitude,
-      lng: temp.location.longitude,
+      distance: parseFloat(temp.location.distance),
+      lat: parseFloat(temp.location.latitude),
+      lng: parseFloat(temp.location.longitude),
       addr1: temp.address.line1,
       addr2: temp.address.line2,
       address: temp.address.line1 + " " + temp.address.line2,
       price: -1
     };
     houses.push(house);
-    //getZestimate(house);
+    getZestimate(house);
   }
   console.log(houses);
   return houses;
@@ -32,8 +32,8 @@ function retrieveHouses(mapCallback){
     'address1': "10838 Heather Ridge Circle",
     'address2': "Orlando, FL 32817",
     'radius': 10,
-    'orderby': "distance",
-    'pagesize': 10
+    'orderby': "salesearchdate",
+    'pagesize': 25
   });
 
   url+="?"+parameters;
@@ -72,30 +72,31 @@ function retrieveHouses(mapCallback){
 
 //request zestimate from zillow for each house
 function getZestimate(house){
-  if(house.price != -1){
-    console.log("already got the price");
-  }
-  else{
-    var url = "http://www.zillow.com/webservice/GetSearchResults.htm"
-
-    var parameters = $.param({
-      'zws-id': "X1-ZWz1962gltdszv_4srxq",
-      'address': house.addr1,
-      'citystatezip': house.addr2,
-      'rentzestimate': "true"
-    });
-
-    url+= "?"+parameters;
-
-    $.ajax({
-      type: "GET",
-      url: url,
-      dataType: "xml",
-      success: function(xml) {
-        console.log(xml);
-        console.log("price request: ",xml.getElementsByTagName("amount").text());
-      }
-    });
-  }
+  house.price = Math.floor(Math.random() * 1500) + 500;
+  // if(house.price != -1){
+  //   console.log("already got the price");
+  // }
+  // else{
+  //   var url = "http://www.zillow.com/webservice/GetSearchResults.htm"
+  //
+  //   var parameters = $.param({
+  //     'zws-id': "X1-ZWz1962gltdszv_4srxq",
+  //     'address': house.addr1,
+  //     'citystatezip': house.addr2,
+  //     'rentzestimate': "true"
+  //   });
+  //
+  //   url+= "?"+parameters;
+  //
+  //   $.ajax({
+  //     type: "GET",
+  //     url: url,
+  //     dataType: "xml",
+  //     success: function(xml) {
+  //       console.log(xml);
+  //       console.log("price request: ",xml.getElementsByTagName("amount").text());
+  //     }
+  //   });
+  //}
 
 }
