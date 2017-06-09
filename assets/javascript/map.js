@@ -9,7 +9,38 @@ var distanceMatrixAPIKey = "AIzaSyACHyy4EKCvJRIlk3KM17nVdZCmltZUTGw";
 
 var iconPath = "assets/media/";
 
+/////////////////
+/////  This will hold the output unchanged from what Google provides
+/////  one origin, workplace.  Up to 25 destinations.
 var distMatrixRaw = [];
+////////////////
+
+
+var workplace = {};
+//	workplace.name = 'UCF Coding Bootcamp';
+//	workplace.lat = 28.589477;
+//	workplace.lng = -81.199993;
+//	workplace.address = '3280 Progress Drive, Orlando, FL';
+
+// Cache all
+var homes = [];
+
+// Current block of 25
+var homesCurr = [];
+
+
+//////////////////////////
+// Free limit per API request
+var homesLimit = 25; //25
+//////////////////////////
+
+//////////////////
+/////// map.js:
+// var iconPath = "assets/media/";
+/////////////////
+
+var iconPath = 'assets/media/';
+var workIcon = iconPath + 'work.png';
 
 
 // This callback is linked to the HTML tag and its API key.  Just to be sure, I'm defining anything that uses Google Maps libraries inside of this callback.
@@ -22,7 +53,7 @@ function prepGMaps() {
 			function(event)
 				{
 					event.preventDefault();
-					console.log('Workplace click...');
+					console.log('Workplace clicked...');
 					workplace.name = $('#workplace-name').val();
 					workplace.address = $('#workplace-address').val();
 
@@ -38,34 +69,45 @@ function prepGMaps() {
 		$('#homes-confirm').click(
 			function(event)
 				{
+					/////////////////////////
 					///// This should not be used in the finished product....
 					fakeHousesForSale(workplace);
-					////
+					////////////////////////
+
+					///////////////////
+					//// Better:
+					//// realHousesForSale(workplace,homes)
+					//////////////////
+
+
 
 					event.preventDefault();					
-					console.log('Homes button click...');
+					console.log('Homes button clicked...');
+
+
 					if(haveMap == true)
 						// Below would prevent you from starting over...
 //					if(haveHomes == false && haveMap == true)
 						{
-							setDurationZScores(homes);
-							setPriceZScores(homes);
-							setDistZScores(homes);
-
-							getDistMatrix();
-							/* Defer to callbacks of getDistMatrix...
-							deployHomes(homes);
-							haveHomes = true;
-
-								Code should probably allow more calls to be appended?  But it's taking a long time just to refactor and combine code...
-							*/
+							console.log('haveMap==true');
+							geoMulti(homesCurr, function()
+								{
+									console.log('Going to fire distMatrix...');
+									getDistMatrix();
+									/* Defer to callbacks of getDistMatrix...
+									deployHomes(homes);
+									haveHomes = true;  // (But more can be added and statistical rankings are updated each time)
+									*/
+								}
+							);
 						}
 				}
 			);
 
 
-//  Coding Bootcamp: lat,lng = 28.598107, -81.299277
 
+
+//  Coding Bootcamp: lat,lng = 28.598107, -81.299277
 
 ///  Some location code used in google documentation example:
 //var origin1 = new google.maps.LatLng(55.930385, -3.118425);
@@ -75,86 +117,158 @@ function prepGMaps() {
 
 
 
-// priceZ and distZ will hold z-scores for those values now.
-//  THE BELOW DEPENDS ON THE STATISTICS FOR THE ENTIRE ARRAY, AND THEREFORE CANNOT BE
-//  COMPUTED INSIDE OF THE FOR LOOP
-
-
-// Depends on the z-scores...
-
-
-
-
 function deployMap(work)
 	{
 		console.log('Deploy work map now please?');
 //		work.loc = new google.maps.LatLng(work.lat,work.lng);
-		var geocoder = new google.maps.Geocoder();
+//		var geocoder = new google.maps.Geocoder();
 		console.log(work.address);
-		console.log('geocoder object:',geocoder.geocode);
+//		console.log('geocoder object:',geocoder.geocode);
 
-//		geocoder.
-	  geocoder.geocode( {'address': work.address}, function(results, status) {
-		     if (status === 'OK')
-		     {
-		     	console.log('Geocoder says ok!');
-		      	work.loc = results[0].geometry.location;
-		      	work.lat = work.loc.lat();
-		      	work.lng = work.loc.lng();
+//	  geocoder.geocode( {'address': work.address}, function(results, status) {
 
-		      	console.log('Geocoder says location is:',work.loc);
-		     	//		workplace.loc = new 
-				mapProp= 
-				{
-			    	center: work.loc, //new google.maps.LatLng(28.589477, -81.199993),
-			    	zoom:12
-				};		
+			// Give workplace working lat, lng, and Google loc object
+	  	geo(work, function() 
+	  		{
+	//		     if (status === 'OK')
+	//		     {
+	//		     	console.log('Geocoder says ok!');
+	//		      	work.loc = results[0].geometry.location;
+	//		      	work.lat = work.loc.lat();
+	//		      	work.lng = work.loc.lng();
 
-				console.log('Map out workplace:',work.loc);
+			if(typeof work.loc !== 'undefined')
+				{	
+			      	console.log('Geocoder says location is:',work.loc);
+			     	//		workplace.loc = new 
+					mapProp= 
+					{
+				    	center: work.loc, //new google.maps.LatLng(28.589477, -81.199993),
+				    	zoom:12
+					};		
 
-				map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-				
+					console.log('Map out workplace:',work.loc);
 
-				workMarker = new google.maps.Marker({
-					position: work.loc,
-					map: map,
-					icon: workIcon
-				});
+					map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+					
 
-		      		//Google geocoder example
-		//        map.setCenter(results[0].geometry.location);
-		  //      var marker = new google.maps.Marker({
-		    //        map: map,
-		      //      position: results[0].geometry.location
-		//        });
-		      } 
+					workMarker = new google.maps.Marker({
+						position: work.loc,
+						map: map,
+						icon: workIcon
+					});
+	//		      } 
+	//		      else { alert('Geocode was not successful for the following reason: ' + status); }
+	//		    }); 
 
-		      else { alert('Geocode was not successful for the following reason: ' + status); }
-		    }); 
+					$('#workplace-demo').html('I work at: ' + workplace.name + '<br>' + 'Address: ' + workplace.address);
+		  		}
+		  	else{ alert('workplace.loc is fubar!!!');}
 
-
-
-  // Zoom to 9 when clicking on marker
-/*
-  google.maps.event.addListener(marker,'click',function() {
-    map.setZoom(9);
-    map.setCenter(marker.getPosition());
-  });
-  */
+		  	});
 	}
 
-
 }
+
+
+function geo(place, callback)
+	{
+		if(typeof (place.lat) == 'number' && typeof (place.lng) == 'number')
+			// Don't geocode if lat and lng are known. Store as Google loc. 
+			{
+				console.log('lat and lng provided');
+				place.loc = new google.maps.LatLng(place.lat,place.lng);
+				place.geoFormat = true;
+				callback();
+			}
+		else if (typeof place.address == 'string')
+			{
+				console.log('Looking for lat/lng for',place.address);
+				var geocoder = new google.maps.Geocoder();
+				geocoder.geocode( {'address': place.address}, function(results, status) 
+					{
+						if (status === 'OK')
+						{
+							place.loc = results[0].geometry.location;
+							place.lat = place.loc.lat();
+					      	place.lng = place.loc.lng();
+					      	place.geoFormat = true;
+					    }
+						else { alert('Geocode was not successful for the following reason: ' + status); }
+						callback();
+					}
+				);
+			}
+		else
+			{
+				alert(place + 'does not have address or lat/lng');
+				callback();
+			}
+	}
+
+function geoMulti(places,callback)
+	{
+		console.log('geoMulti...');
+		console.log(places.length);
+
+		for(var j=0; j<places.length; j++)
+			{	
+				places[j].geoFormat = false;
+				console.log(j,'items set to false...');
+				if(j==places.length) {callback();} 
+			}
+
+		for(var i=0; i<places.length; i++)
+			{
+				var place = places[i];
+				geo(place, function()
+					{
+						var locPlace = place;
+						console.log(places.indexOf(locPlace),'vs i:',i,'vs place:',places.indexOf(locPlace));
+//						locPlace.geoFormat = true;
+						console.log('Formatted:',places.filter(function(item){return (item.geoFormat==true);}).length);
+						if (places.length == places.filter(function(item){return (item.geoFormat==true);}).length )
+						{
+							callback();
+						}
+					}
+				);
+			} 
+
+/*		places.forEach(
+			function(place, index, arr)
+				{
+					var isDone = false;
+					isDone = geo(place, 
+						function()
+							{
+								place.geoFormat = true;
+								if (arr.length == arr.filter(function(item){return (item.geoFormat==true);}).length )
+								{
+									console.log('All formatted');
+									return true;
+								}
+								else
+								{
+									console.log('Not all formatted');
+									return false;
+								}
+							}
+						);
+					if (isDone) { callback(); }
+				}
+			); */
+	}
+
 
 /////////////////// Outside of google maps initialization
 
 function deployHomes(homes)
 	{
-
-
 		homes.forEach(
 				function(home)
 				{
+					home.marker = null;
 					home.loc = new google.maps.LatLng(home.lat,home.lng);
 //					console.log('Home location:',home.loc);
 //					console.log('Home lat:',home.loc.lat());
@@ -168,19 +282,17 @@ function deployHomes(homes)
 					google.maps.event.addListener(home.marker,'click',
 						function() 
 							{
-								$('.house-ul').html('<li>Price: ' + home.price + '</li>' +
-														'<li>Distance: ' + home.dist + '</li>');
+								$('.house-ul').html('<li>Name: ' + home.name + '</li>' +
+														'<li>Price: $' + home.price + '</li>' +
+														'<li>Travel time: ' + Math.floor(home.duration/60) + 'minutes.</li>');
 							}
 						);
 //					home.marker
 
 					console.log('Home was logged with icon',home.icon,home);
 				}
-
-
 			)
-
-
+		homesCurr = [];
 
 	}
 
@@ -189,12 +301,10 @@ function deployHomes(homes)
 
 ///  Distance matrix handler:
 
-/////  This will hold the output unchanged from what Google provices
-
 function getDistMatrix()
 	{
 		var dest = [];
-		homes.forEach(
+		homesCurr.forEach(
 		function(home)
 			{
 				home.loc = new google.maps.LatLng(home.lat,home.lng);
@@ -229,26 +339,42 @@ function distMatrixCallback(response, status)
 		else
 			{
 				distMatrixRaw = response;
-            var results = response.rows[0].elements;				
+				var results = response.rows[0].elements;				
 
-			for(var j=0; j<homes.length; j++)
-//				                outputDiv.innerHTML += originList[i] + ' to ' + destinationList[j] +
-				{
-						// time in seconds
-					homes[j].duration = results[j].duration.value;
-/*					console.log(results[j]);
-					console.log(results[j].duration);
-					console.log(results[j].duration.value);  */
+				homesCurr = homesCurr.filter(function(item,index) 
+						{
+							if(typeof results[index].duration === 'undefined')
+								{
+									console.log('Cannot drive...');
+									return false;
+								}
+							else 
+								{
+									item.duration = results[index].duration.value;
+									return true;
+								}
+						}
+					);
 
-				}
-//                    ': ' + results[j].distance.text + ' in ' +
-//                    results[j].duration.text + '<br>';
+				console.log('homesCurr:',homesCurr);
 
 			}
 
+//			console.log('Homes before:',homes);
+
+			homes = homes.concat(homesCurr);
+
+//			console.log('Homes after:',homes);
+
 			// Use stupid metric if the matrix callback failed...
 			setDurationZScores(homes);
+			//
+			setPriceZScores(homes);
+			setDistZScores(homes);
+
 			homeIconPicker(homes);
+
+				// Will remove markers; new data may change relative score of previous queries.
 			deployHomes(homes);
 			haveHomes = true;
 
