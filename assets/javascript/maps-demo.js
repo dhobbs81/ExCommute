@@ -1,5 +1,14 @@
+/**
+ * Include the ExCommute namespace
+ * 
+ * If the ExCommuteNs is undefined, then define ExCommuteNs.
+ */
+var ExCommuteNs = (function (ns) {
+  return ns;
+}(ExCommuteNs || {}));
 
-
+// Include the MapNs and give it a shorthand form
+var mapNs = ExCommuteNs.MapNs;
 
 /// Fake homes for demo!
 /* for(var i=0;i<homesLimit; i++)
@@ -32,8 +41,8 @@
 
 function fakeHousesForSale(work)
 	{
-		homesCurr = [];
-		for(var i=0;i<homesLimit-3; i++)
+		mapNs.homesCurr = [];
+		for(var i=0;i< mapNs.homesLimit-3; i++)
 			{
 				var house = {};
 				house.name = 'wharrgarbl'+i;
@@ -52,60 +61,58 @@ function fakeHousesForSale(work)
 				house.dist = 
 				// Outdated, need to use duration...
 					Math.pow
-						(Math.pow(house.lat-workplace.lat,2)
-						+ Math.pow(house.lng-workplace.lng,2)
+						(Math.pow(house.lat-mapNs.workplace.lat,2)
+						+ Math.pow(house.lng-mapNs.workplace.lng,2)
 							,.5);
 				/////////////////////
 
-				homesCurr.push(house);
+				mapNs.homesCurr.push(house);
 					// Validate driveability before keeping permanently
 				//homes.push(house);
 			}
 
-		if(homes.length<20)
+		if(mapNs.homes.length<20)
 {
 
 
 
-		homesCurr[homesLimit-3] = {};
-		homesCurr[homesLimit-3].name = 'Valencia College';
-		homesCurr[homesLimit-3].price = 2200;
-		homesCurr[homesLimit-3].marker = '';
-		homesCurr[homesLimit-3].icon = '';
-		homesCurr[homesLimit-3].dist = .2;
-		homesCurr[homesLimit-3].address = '701 N Econlockhatchee Trail, Orlando, FL 32825';		
+		mapNs.HomesCurr[mapNs.homesLimit-3] = {};
+		mapNs.HomesCurr[mapNs.homesLimit-3].name = 'Valencia College';
+		mapNs.HomesCurr[mapNs.homesLimit-3].price = 2200;
+		mapNs.HomesCurr[mapNs.homesLimit-3].marker = '';
+		mapNs.HomesCurr[mapNs.homesLimit-3].icon = '';
+		mapNs.HomesCurr[mapNs.homesLimit-3].dist = .2;
+		mapNs.HomesCurr[mapNs.homesLimit-3].address = '701 N Econlockhatchee Trail, Orlando, FL 32825';		
 
-		homesCurr[homesLimit-2] = {};
-		homesCurr[homesLimit-2].name = 'Wawa';
-		homesCurr[homesLimit-2].price = 2345;
-		homesCurr[homesLimit-2].marker = '';
-		homesCurr[homesLimit-2].icon = '';
-		homesCurr[homesLimit-2].dist = .1;
-		homesCurr[homesLimit-2].address = '11750 University Blvd, Orlando, FL 32817';		
-
-
-/*		homesCurr[homesLimit-2] = {};
-		homesCurr[homesLimit-2].name = 'Matt\'s parents\' house';
-		homesCurr[homesLimit-2].price = 2345;
-		homesCurr[homesLimit-2].marker = '';
-		homesCurr[homesLimit-2].icon = '';
-		homesCurr[homesLimit-2].dist = .3;
-		homesCurr[homesLimit-2].address = '2555 Westminster Drive Cocoa, FL';		*/
+		mapNs.HomesCurr[mapNs.homesLimit-2] = {};
+		mapNs.HomesCurr[mapNs.homesLimit-2].name = 'Wawa';
+		mapNs.HomesCurr[mapNs.homesLimit-2].price = 2345;
+		mapNs.HomesCurr[mapNs.homesLimit-2].marker = '';
+		mapNs.HomesCurr[mapNs.homesLimit-2].icon = '';
+		mapNs.HomesCurr[mapNs.homesLimit-2].dist = .1;
+		mapNs.HomesCurr[mapNs.homesLimit-2].address = '11750 University Blvd, Orlando, FL 32817';		
 
 
+/*		mapNs.HomesCurr[homesLimit-2] = {};
+		mapNs.HomesCurr[mapNs.homesLimit-2].name = 'Matt\'s parents\' house';
+		mapNs.HomesCurr[mapNs.homesLimit-2].price = 2345;
+		mapNs.HomesCurr[mapNs.homesLimit-2].marker = '';
+		mapNs.HomesCurr[mapNs.homesLimit-2].icon = '';
+		mapNs.HomesCurr[mapNs.homesLimit-2].dist = .3;
+		mapNs.HomesCurr[mapNs.homesLimit-2].address = '2555 Westminster Drive Cocoa, FL';		*/
 
-		homesCurr[homesLimit-1] = {};
-		homesCurr[homesLimit-1].name = 'Matt\'s house';
-		homesCurr[homesLimit-1].price = 1234;
-		homesCurr[homesLimit-1].marker = '';
-		homesCurr[homesLimit-1].icon = '';
-		homesCurr[homesLimit-1].dist = .2;
-		homesCurr[homesLimit-1].address = '2507 Windward Way Winter Park, FL';		
+
+
+		mapNs.HomesCurr[mapNs.homesLimit-1] = {};
+		mapNs.HomesCurr[mapNs.homesLimit-1].name = 'Matt\'s house';
+		mapNs.HomesCurr[mapNs.homesLimit-1].price = 1234;
+		mapNs.HomesCurr[mapNs.homesLimit-1].marker = '';
+		mapNs.HomesCurr[mapNs.homesLimit-1].icon = '';
+		mapNs.HomesCurr[mapNs.homesLimit-1].dist = .2;
+		mapNs.HomesCurr[mapNs.homesLimit-1].address = '2507 Windward Way Winter Park, FL';		
 }
 		else{console.log('Not listed again');}
 	}
-
-
 
 var haveMap = false;
 var haveHomes = false;
@@ -114,7 +121,5 @@ var haveHomes = false;
 var map = '';
 var workMarker ='';
 var mapProp = '';
-
-
 
 //$(document).click(function()
