@@ -6,6 +6,8 @@
 		<script src = "https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		
 		<script src = "assets/javascript/display.js"></script>
+
+		<link rel = "stylesheet" href = "assets/css/style.css">
 		 
 		 <!-- Compiled and minified CSS -->
   		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
@@ -18,18 +20,18 @@
 
   		<link rel = "stylesheet" href = "../noUiSlider.10.0.0/nouislider.css">
 		
-		<link rel = "stylesheet" href = "assets/css/style.css">
-
+		
 
 	</head>
 	<body>
 		<div class = "container">
-			<div class = "nav-wrapper" id = "back-to-top">
+			<div class = "nav-wrapper">
 				<div class = "row">	
-					<div class = "col m6">
-				  		<h1 class = "brand-logo center">ExCommute</h1>
+					<div class = "col m12" id = "header">
+				  		<h3 class = "brand-logo center">ExCommute: The Excommunication of Excruciating Excursions</h3>
+				  		<p id = "going-up"><a href = "#back-to-top">Back to the top!</a></p>
 			  		</div>
-			  		<div class = "col m6">
+			  		<!--<div class = "col m6">
 				 		 <ul id = "nav-mobile" class="collapsible popout left" data-collapsible="accordion">
 				   			 <li>
 				      			<div class="collapsible-header">Teenage Mutant Ninja Turtles</div>
@@ -44,7 +46,7 @@
 				      			<div class="collapsible-body"><span>The Flinstones</span></div>
 				    		</li>
 				  		</ul>
-			  		</div>
+			  		</div>-->
 				</div>
 			</div>
 			<!--Code that doesn't work. Play around with this code more sometime to find out why
@@ -62,7 +64,7 @@
 					</li>
 				</ul>
 			</div> -->
-			<div class = "row">	
+			<div class = "row" id = "main-body back-to-top">	
 				
 				<img id = "map"><!--This tag is the space containing the Google Map map-->
 
@@ -78,29 +80,35 @@
 
 			  <!-- Dropdown Structure -->
 			  <ul id='dropdown1' class='dropdown-content'>
-			    <li>Moving is inherently a royal pain. Finding a new living space can be a royal pain. <br>On top of all that, finding a living space conveniently close to your new workplace is just the sour cherry on top. <br>The good news is, we can help pick that cherry off and make your move easier.</li>
+			    <li>Moving is inherently a royal pain. Finding a new living space can be a royal pain. <br>Finding a living space conveniently close to your new workplace is just the sour cherry on top. <br>The good news is, we can help pick that cherry off and make your move easier.</li>
 			  </ul>
 			</div>	
 			<div id = "user-input" class="row">
-				<h5>You can find multiple properties in a single search by entering the information below.</h5>
-				<p>First, enter the address of your new job.</p>   
+				<h4>You can find multiple properties in a single search by entering the information below.</h4>
+				<h5>First, enter the address of your new job.</h5>   
 				    <form class="col s12">
 				      <div class="row">
-				        <div class="input-field col s6">
-				          <input placeholder="Placeholder" id="street_address" type="text" class="validate">
+				        <div class="input-field col s12">
+				          <input id="street_address" type="text" class="validate">
 				          <label for="street_address">Street address</label>
 				        </div>
+				         <div class="row">
+				        <div class="input-field col s12">
+				          <input id="street_address_2" type="text" class="validate">
+				          <label for="street_address_2">Building/Unit Number</label>
+				        </div>
+				         <div class="row">
+				        	<div class="input-field col s12">
+				          	<input id="city" type="text" class="validate">
+				          	<label for="city">City</label>
+				        	</div>
 				         <div class="row">
 				        	<div class="input-field col s12">
 				          		<input id="state" type="text" class="validate">
 				         		 <label for="state">State</label>
 				       		</div>
 			       		</div>
-				        <div class="row">
-				        	<div class="input-field col s12">
-				          	<input id="city" type="text" class="validate">
-				          	<label for="city">City</label>
-				        	</div>
+				       
 				        </div>
 				     	<div class="row">
 				        	<div class="input-field col s12">
@@ -108,23 +116,23 @@
 				          	<label for="zip">Zip Code</label>
 				        	</div>
 				       </div>
-				       <p>Next, enter the longest distance from work that you are comfortable with.</p>
+				       <h5>Next, enter the longest distance from work that you are comfortable with.</h5>
 						 	<form action="#">
 							    <p>
 							      <input name="group1" type="radio" id="test1" />
-							      <label for="test1">1 mile</label>
+							      <label for="test1">5 miles</label>
 							    </p>
 							    <p>
 							      <input name="group1" type="radio" id="test2" />
-							      <label for="test2">5 miles</label>
+							      <label for="test2">15 miles</label>
 							    </p>
 							    <p>
 							      <input class="with-gap" name="group1" type="radio" id="test3"  />
-							      <label for="test3">10 miles</label>
+							      <label for="test3">25 miles</label>
 							    </p>
 							    <p>
 							      <input name="group1" type="radio" id="test4" />
-							      <label for="test4">25 miles</label>
+							      <label for="test4">50 miles</label>
 							    </p>
 							</form>
 				      <!--  <div class="input-field col s6">
@@ -133,17 +141,11 @@
 				        </div> -->
 				    </div>      
 	  				</form>
-	  				<p>Now enter your price range for your new living space.</p>
-	  				<form id = price-range action="#">
-	  					<p id = "price-min">Minimum cost of living</p>
-   						<p class="range-field">
- 						<input type="range" id="test5" min="0" max="100" />
-    					</p>
-  					</form>
+	  				<h5>Now enter your price range for your new living space.</h5>
   					<form id = price-range action="#">
   						<p id = "price-max">Maximum cost of living</p>
    						<p class="range-field">
- 						<input type="range" id="test5" min="0" max="100" />
+ 						<input type="range" id="test5" min="0" max="100" value = "50" />
     					</p>
   					</form>
 	  				 
@@ -157,7 +159,16 @@
 		</div> <!--End the container-->
 
         <!--You will need to apply these info cards to JS in order to reveal additional info about house selected. But for now, just keep your HTML data here.-->
-        <div class="card sticky-action">
+        <div class="row">
+      		<div class="col s12 m5">
+        		<div class="card-panel teal">
+          			<span class="white-text">I am a very simple card. I am good at containing small bits of information.
+          		I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+         		 	</span>
+        		</div>
+      		</div>
+   		</div>
+        <!--<div class="card sticky-action">
     		Blooogh
 
 			<div class="card-action">Blah
@@ -167,7 +178,7 @@
 				<span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
   				<p id = "description">Here is some more information about this product that is only revealed once clicked on.</p>
 			</div>
-  		</div>
+  		</div>-->
 		 <footer class="page-footer">
           <div class="container">
           <div class="footer-copyright">
@@ -212,4 +223,7 @@
 
 		</script>
 	</body>
+	<!--Nix the extendable tab and input edit for now. It's a little complicated for the backend to manage over the weekend. We will just finalize the search input and hide it from user. User will have to refresh the page to change results. Annoying, but it's the 1st project for crying out loud!-->
+	<!--No minimum price needed. Having 1 slider makes mvp easier to create-->
+	<!--
 </html>
