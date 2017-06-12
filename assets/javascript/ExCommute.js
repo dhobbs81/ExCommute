@@ -27,7 +27,7 @@ var ExCommuteNs = (function (ns) {
 		"map.js",
 		"maps-demo.js",
 		"app.js",
-    "buttons.js"
+    "display.js"
 	];
 
 	ns.includeScript = function(name, path, async = false) {
