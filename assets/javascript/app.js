@@ -35,3 +35,22 @@ function main() {
 
     return true;
 }
+
+/**
+ * Include the ExCommute namespace
+ * 
+ * If the ExCommuteNs is undefined, then define ExCommuteNs.
+ */
+var ExCommuteNs = (function (ns) {
+    ns.mapReadyCallback = function() {
+
+        $("#map").css({
+            "width": "100%",
+        });
+
+        var map = ExCommuteNs.MapNs.initMap();
+
+        ExCommuteNs.MapNs.showHouses(map);
+    }
+    return ns;
+}(ExCommuteNs || {}));
