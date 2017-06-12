@@ -9,11 +9,11 @@
 script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmW7fmoiV52ahfr4s2gmYKVPsv8hEHk0g&callback=prepGMaps">
 </script -->
 
+<script src="assets/javascript/webapis.js"></script>
+<script src="assets/javascript/map.js"></script>
+<script src="assets/javascript/maps-demo.js"></script>
 
-<script src='assets/javascript/map.js'></script>
-<script src='assets/javascript/maps-demo.js'></script>
-
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACHyy4EKCvJRIlk3KM17nVdZCmltZUTGw&callback=prepGMaps"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACHyy4EKCvJRIlk3KM17nVdZCmltZUTGw&callback=ExCommuteNs.MapNs.prepGMaps"></script>
 
 
 
@@ -50,11 +50,16 @@ script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmW7fm
 </div>
 
 <div>
-	<form id="homes-form">
+  <form id="homes-form">
+	    <label for="max-rent">Max rent/month</label>
+	    $<input type="text" id="max-rent" value="4000"><br>
+
+	    <label for="max-dist">Max distance</label>
+	    <input type="text" id="max-dist" value="50">miles<br>
+
 	    <label for="homes-confirm">Click to confirm homes array to process and display on map:</label>
     	<input id="homes-confirm" type="submit">
 	</form>
-
 </div>
 
 </body>

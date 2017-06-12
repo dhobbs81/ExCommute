@@ -30,6 +30,7 @@
 		 		};
 		 		
 		 		});
+		 		var sliderClear = $(".input-range").empty();
 		 		console.log(textClear); //Clear button appears not to be working. Work on that.
 		 		console.log(sliderClear);
 		 	});
@@ -79,7 +80,31 @@
         		};
         	};
         };*/
+	 	
+		 	/*You need to be ready for the CSS to integrate w/ GoogleMaps API properly. 
+		 	Highlight selected properties, make markers highly visible and legible. 
+		 	Create spaces where additional dialogue info can be displayed, either w/ mouse click or hover.*/
+		 	var map = $("#map");
 
+		 	 //var queryURL = /*insert url base here*/ + /*insert variable here*/ + /*insert API key here*/;
+     
+        //Make the user input available to view and edit while results are visible. User input will probably also need to be compressible.
+        if($("map").show()){
+        	$("#user-input").show();
+        	$("#user-input").css({float:"top"});
+        }else {
+        	$("#user-input").hide();
+
+        };//Now how do we expand and contract our user-input form while the map is on display?
+        var editInput = function(){
+        	var editMessage = $("h3").html("You can edit your filters by clicking here!");
+        	var editExpand = $("button");
+        	$("editExpand").create(editMessage);
+        	$("editExpand").css({float:right});
+        	$("editExpand").click(function() {
+        		$("#user-input").css({height:0.5em; width: 0.5em; float:right});
+        	});
+        };
         
 
 	 	 });//End document.ready
