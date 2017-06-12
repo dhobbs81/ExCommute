@@ -8,13 +8,13 @@
 
 /**
  * Define the ExCommute application namespace
- * 
+ *
  * JavaScript Module Pattern: In-Depth
  * See [JS Module Pattern]{@link http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html ModulePattern}
- * 
+ *
  * All of the code that runs inside the function lives in a closure, which
  * provides privacy and state throughout the lifetime of our application.
- * 
+ *
  * The namespace can be augmented across files. The global jQuery object is
  * imported into the namespace as the '$' symbol.
  */
@@ -26,8 +26,9 @@ var ExCommuteNs = (function (ns) {
 		"webapis.js",
 		"map.js",
 		"maps-demo.js",
-		"app.js"
-	]; 
+		"app.js",
+    "buttons.js"
+	];
 
 	ns.includeScript = function(name, path, async = false) {
 		var script = document.createElement('script');
@@ -45,7 +46,7 @@ var ExCommuteNs = (function (ns) {
 		document.getElementsByTagName('head')[0].appendChild(script);
 	}
 
-	// 
+	//
 	// Loads the set of ExCommute scripts
 	//
 	ns.loadScripts = function() {
