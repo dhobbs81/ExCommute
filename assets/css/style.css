@@ -1,41 +1,56 @@
- html {
-    font-family:Lucida Sans Unicode;
-  }
-body{color:#6a19ba; background-color:#ce93d8; width:100%}
-img{}
-.collapsible-header{font-size:2em; font-style:italic; float:right;}
-form{}
-h3{font-size:0.5em;}
-h4{margin-bottom:20px;}
-h5{margin-top:20px;}
-button{color:black;}
-.container .row {margin-top:100px;}
-.brand-logo{font-size:2em;}
-.nav-wrapper{}
-.collapsible-header{font-size:1em;}
-.input-field{background-color:#f1e8f7; border-style:dotted;border-color:gray;border-width:2px;}
-div.container{margin:11px;}
-.container{margin:100px;};
-.btn{color:#998aca;}
-.dropdown-button{color:#998aca;}
-footer{color:#998aca; background-color:#e9d0e8;}
-footer.copyright{color:#998aca; margin:0px;}
-footer.page-footer{height:1em; padding-top:0px;}
-.card-panel{}
-#submit{} 
-#header{position:fixed; top:0px; float:top; background-color:#f1e8f7; background-opacity:100%; width:100%; border-width:2px; border-color:black; border-style:solid; z-index:1;}
-#main-body{margin:150px;}
-#map{border-color:#ee9105; border-width:2px; border:solid; height:350px;width:350px;float:left;}
-#back-to-top{}
-#going-up{float:right;}
-#test5{margin:0px; padding-top:15px; padding-bottom:15px; background-color:#f1e8f7; border-color:#998aca;} /*The slider*/
+body, html{
+  height: 100%;
+}
 
-/*Color Scheme*/
+.navbar {
+  height: 11%;
+}
 
-/*Text Color: #998aca (plum);
-Main Background: #a8fcd4 (paleturquoise);
-Footer Background #e9d0e8 (gainsborough);
-Map Border: #ec9700 (darkorange);
-Slider Background: #bca8fc(lightsteelblue);
-Form Background: #f1e8f7(lavender);
-*/
+body{
+  background-image: url("../media/background.png");
+}
+
+#main-page{
+  display: none;
+  width: 100%;
+  height: 89%;
+  background-color: blue;
+}
+
+.navbar{
+  background-color: rgb(8, 4, 15);
+  font-family: BenchNine;
+  margin-bottom: 0;
+}
+
+.btn, button{
+  background-color: rgb(33, 85, 162);
+}
+
+.brand-logo{
+  margin-left: 5%;
+}
+
+
+.card{
+  background-color: rgb(8, 4, 15);
+  margin-top: 2.5%;
+}
+
+#shit{
+  width: 100%;
+  height: 100%;
+}
+
+#onboard-card{
+
+}
+
+#search-card{
+  display: none;
+}
+
+#map{
+  width: 100%;
+  height: 100%;
+}
