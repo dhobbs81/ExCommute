@@ -1,5 +1,5 @@
 /**
- * @file Provides functionality to display housing data on a map 
+ * @file Provides functionality to display housing data on a map
  * @author Matt Bond
  */
 
@@ -8,7 +8,7 @@
 
 /**
  * Include the ExCommute namespace
- * 
+ *
  * If the ExCommuteNs is undefined, then define ExCommuteNs.
  */
 var ExCommuteNs = (function (ns) {
@@ -17,13 +17,13 @@ var ExCommuteNs = (function (ns) {
 
 /**
  * Define the ExCommute Map namespace
- * 
+ *
  * JavaScript Module Pattern: In-Depth
  * See [JS Module Pattern]{@link http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html ModulePattern}
- * 
+ *
  * All of the code that runs inside the function lives in a closure, which
  * provides privacy and state throughout the lifetime of our application.
- * 
+ *
  * Pass the global jQuery object into the namespace
  */
 ExCommuteNs.MapNs = (function ($) {
@@ -392,6 +392,68 @@ ExCommuteNs.MapNs = (function ($) {
     //var destinationA = 'Stockholm, Sweden';
     //var destinationB = new google.maps.LatLng(50.087692, 14.421150);
 
+    var placeSearch, autocomplete;
+    var componentForm = {
+      street_number: 'short_name',
+      route: 'long_name',
+      locality: 'long_name',
+      administrative_area_level_1: 'short_name',
+      country: 'long_name',
+      postal_code: 'short_name'
+    };
+
+    function initAutocomplete() {
+      // Create the autocomplete object, restricting the search to geographical
+      // location types.
+      autocomplete = new google.maps.places.Autocomplete(
+        /** @type {!HTMLInputElement} */
+        (document.getElementById('autocomplete')), {
+          types: ['geocode']
+        });
+
+      // When the user selects an address from the dropdown, populate the address
+      // fields in the form.
+      autocomplete.addListener('place_changed', fillInAddress);
+    }
+
+    function fillInAddress() {
+      // Get the place details from the autocomplete object.
+      var place = autocomplete.getPlace();
+
+      for (var component in componentForm) {
+        document.getElementById(component).value = '';
+        document.getElementById(component).disabled = false;
+      }
+
+      // Get each component of the address from the place details
+      // and fill the corresponding field on the form.
+      for (var i = 0; i < place.address_components.length; i++) {
+        var addressType = place.address_components[i].types[0];
+        if (componentForm[addressType]) {
+          var val = place.address_components[i][componentForm[addressType]];
+          document.getElementById(addressType).value = val;
+        }
+      }
+    }
+
+    // Bias the autocomplete object to the user's geographical location,
+    // as supplied by the browser's 'navigator.geolocation' object.
+    function geolocate() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var geolocation = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          var circle = new google.maps.Circle({
+            center: geolocation,
+            radius: position.coords.accuracy
+          });
+          autocomplete.setBounds(circle.getBounds());
+        });
+      }
+    }
+
     function deployMap(work) {
 
       console.log('Deploy work map now please?');
@@ -400,7 +462,7 @@ ExCommuteNs.MapNs = (function ($) {
       console.log(work.address);
       //		console.log('geocoder object:',geocoder.geocode);
 
-      //	  geocoder.geocode( {'address': work.address}, function(results, status) 
+      //	  geocoder.geocode( {'address': work.address}, function(results, status)
 
       // Give workplace working lat, lng, and Google loc object
       ns.geo(work, function() {
