@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>ExCommute: The Excommunication of Excruciating Excursions</title>
-		
-		<script src = "https://code.jquery.com/jquery-2.2.0.min.js"></script>
-		
-		<script src = "assets/javascript/display.js"></script>
+<head>
+	<title>ExCommute: The Excommunication of Excruciating Excursions</title>
 
-		<link rel = "stylesheet" href = "assets/css/style.css">
-		 
-		 <!-- Compiled and minified CSS -->
-  		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+	<!-- Reset browser default style -->
+	<link rel="stylesheet" href="assets/css/html5reset.css">
 
-  		<!-- Compiled and minified JavaScript -->
-  		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>	
+	<!-- Load materialize styles -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
 
-	</head>
+	<!-- Load ExCommute style -->
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<!-- Load the scripts in order of required scope. The scripts are downloaded
+	together (in parallel to the loading of the HTML) and executed in order. -->
+
+	<!-- Load JQuery -->
+	<script
+		src="https://code.jquery.com/jquery-3.2.1.min.js"
+		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		crossorigin="anonymous" defer></script>
+
+	<!-- Load Materialize framework -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js" defer></script>
+
+	<!-- Load ExCommute -->
+	<script src="assets/javascript/ExCommute.js"></script>
+
+</head>
 	<body>
 		<div class = "container">
 			<div class = "nav-wrapper">
@@ -69,154 +81,134 @@
   				</ul>-->
 
 			  <!-- Dropdown Trigger -->
-			  <a class='dropdown-button btn' href='#' data-activates='dropdown1'>The ideal tool for convenient commute to work for relocating residents</a>
+			  <a class="dropdown-button btn" href="#" data-activates="dropdown1">The ideal tool for convenient commute to work for relocating residents</a>
 
-			  <!-- Dropdown Structure -->
-			  <ul id='dropdown1' class='dropdown-content'>
-			    <li>Moving is inherently a royal pain. Finding a new living space can be a royal pain. <br>Finding a living space conveniently close to your new workplace is just the sour cherry on top. <br>The good news is, we can help pick that cherry off and make your move easier.</li>
-			  </ul>
-			</div>	
-			<div id = "user-input" class="row">
-				<h4>You can find multiple properties in a single search by entering the information below.</h4>
-				<h5>First, enter the address of your new job.</h5>   
-				    <form class="col s12">
-				      <div class="row">
-				        <div class="input-field col s12">
-				          <input id="street_address" type="text" class="validate">
-				          <label for="street_address">Street address</label>
-				        </div>
-				         <div class="row">
-				        <div class="input-field col s12">
-				          <input id="street_address_2" type="text" class="validate">
-				          <label for="street_address_2">Building/Unit Number</label>
-				        </div>
-				         <div class="row">
-				        	<div class="input-field col s12">
-				          	<input id="city" type="text" class="validate">
-				          	<label for="city">City</label>
-				        	</div>
-				         <div class="row">
-				        	<div class="input-field col s12">
-				          		<input id="state" type="text" class="validate">
-				         		 <label for="state">State</label>
-				       		</div>
-			       		</div>
-				       
-				        </div>
-				     	<div class="row">
-				        	<div class="input-field col s12">
-				          	<input id="zip" type="text" class="validate">
-				          	<label for="zip">Zip Code</label>
-				        	</div>
-				       </div>
-				       <h5>Next, enter the longest distance from work that you are comfortable with.</h5>
-						 	<form action="#">
-							    <p>
-							      <input name="group1" type="radio" id="test1" />
-							      <label for="test1">5 miles</label>
-							    </p>
-							    <p>
-							      <input name="group1" type="radio" id="test2" />
-							      <label for="test2">15 miles</label>
-							    </p>
-							    <p>
-							      <input class="with-gap" name="group1" type="radio" id="test3"  />
-							      <label for="test3">25 miles</label>
-							    </p>
-							    <p>
-							      <input name="group1" type="radio" id="test4" />
-							      <label for="test4">50 miles</label>
-							    </p>
-							</form>
-				      <!--  <div class="input-field col s6">
+			<!-- Dropdown Structure -->
+			<ul id="dropdown1" class="dropdown-content">
+				<li>Moving is inherently a royal pain. Finding a new living space can be a royal pain. <br>On top of all that, finding a
+					living space conveniently close to your new workplace is just the sour cherry on top. <br>The good news is, we can help
+					pick that cherry off and make your move easier.</li>
+			</ul>
+		</div>
+		<div id="user-input" class="row">
+			<h5>You can find multiple properties in a single search by entering the information below.</h5>
+			<p>First, enter the address of your new job.</p>
+			<form class="col s12">
+
+				<div class="row">
+					<div class="input-field col s6">
+						<input placeholder="Placeholder" id="street_address" type="text" class="validate">
+						<label for="street_address">Street address</label>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input id="state" type="text" class="validate">
+							<label for="state">State</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input id="city" type="text" class="validate">
+							<label for="city">City</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input id="zip" type="text" class="validate">
+							<label for="zip">Zip Code</label>
+						</div>
+					</div>
+					<p>Next, enter the longest distance from work that you are comfortable with.</p>
+					<form action="#">
+						<p>
+							<input name="group1" type="radio" id="test1" />
+							<label for="test1">1 mile</label>
+						</p>
+						<p>
+							<input name="group1" type="radio" id="test2" />
+							<label for="test2">5 miles</label>
+						</p>
+						<p>
+							<input class="with-gap" name="group1" type="radio" id="test3" />
+							<label for="test3">10 miles</label>
+						</p>
+						<p>
+							<input name="group1" type="radio" id="test4" />
+							<label for="test4">25 miles</label>
+						</p>
+					</form>
+					<!--  <div class="input-field col s6">
 				          <input id="max_dist" type="text" class="validate">
 				          <label for="max_dist">Maximum Distance Desired</label>
-				        </div> -->
-				    </div>      
-	  				</form>
-	  				<h5>Now enter your price range for your new living space.</h5>
+	  				<form id = price-range action="#">
+	  					<p id = "price-min">Minimum cost of living</p>
+   						<p class="range-field">
+ 						<input type="range" id="test5" min="0" max="100" />
+    					</p>
+  					</form>
   					<form id = price-range action="#">
   						<p id = "price-max">Maximum cost of living</p>
    						<p class="range-field">
- 						<input type="range" id="test5" min="0" max="100" value = "50" />
+ 						<input type="range" id="test5" min="0" max="100" />
     					</p>
   					</form>
 	  				 
 	  				 <button id = "submit">
-			      	Search Real Estate Properties	
-			      	</button>
-			      	<button id = "clear">
-			      	Clear All
-			      	</button>
-			  </div>
-		</div> <!--End the container-->
-
         <!--You will need to apply these info cards to JS in order to reveal additional info about house selected. But for now, just keep your HTML data here.-->
-        <div class="row">
-      		<div class="col s12 m5">
-        		<div class="card-panel teal">
-          			<span class="white-text">I am a very simple card. I am good at containing small bits of information.
-          		I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-         		 	</span>
-        		</div>
-      		</div>
-   		</div>
-        <!--<div class="card sticky-action">
-    		Blooogh
+				</div>
+			</form>
+		</div>
+		<div class="card sticky-action">
+			Blooogh
 
 			<div class="card-action">Blah
 			</div>
 
 			<div class="card-reveal">
 				<span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-  				<p id = "description">Here is some more information about this product that is only revealed once clicked on.</p>
+				<p id="description">Here is some more information about this product that is only revealed once clicked on.</p>
 			</div>
-  		</div>-->
-		 <footer class="page-footer">
-          <div class="container">
-          <div class="footer-copyright">
-            <div class="container">
-            <a class="grey-text text-lighten-4 right" href="#back-to-top">Back to the top!</a>
-            </div>
-          </div>
-        </footer>
+		</div>
+		<footer class="page-footer">
+			<div class="container">
+				<div class="footer-copyright">
+					<div class="container">
+						<a class="grey-text text-lighten-4 right" href="#back-to-top">Back to the top!</a>
+					</div>
+				</div>
+			</div>
+		</footer>
 
-            
-            
 		<script>
-		
+			/* $.ajax({
+			url       : queryURL,
+			method    : "GET",
+			}).done(function(response) {
+				var locationPoint = $(insert API element here).click(function(){
+					//insert CSS attributes to each point
+					var locationCSS = $(insert API element here).css("border-color", "#00ff1f");
+					var infoCard = $(".card").show();
+					var cardDescription = $(insert API element here).html("#description"); //This shows additional information on the card about the clicked property.
 
-		/* $.ajax({
-        url       : queryURL,
-        method    : "GET",
-        }).done(function(response) {
-        	var locationPoint = $(insert API element here).click(function(){
-        		//insert CSS attributes to each point
-    			var locationCSS = $(insert API element here).css("border-color", "#00ff1f");
-    			var infoCard = $(".card").show();
-    			var cardDescription = $(insert API element here).html("#description"); //This shows additional information on the card about the clicked property.
-
-		 	});
-    			
-      });*/
-
-      /* var priceRange = document.getElementById('test5');//This slider will not appear until you link up nouislider.js and nouislider.css
-  			noUiSlider.create(slider, {
-			   start: [20, 80],
-			   connect: true,
-			   step: 1,
-			   range: {
-			     'min': 0,
-			     'max': 100
-			   },
-			   format: wNumb({
-			     decimals: 0
-			   })
+				});
+					
 			});*/
 
-		</script>
-	</body>
-	<!--Nix the extendable tab and input edit for now. It's a little complicated for the backend to manage over the weekend. We will just finalize the search input and hide it from user. User will have to refresh the page to change results. Annoying, but it's the 1st project for crying out loud!-->
-	<!--No minimum price needed. Having 1 slider makes mvp easier to create-->
-	<!--
+			/* var priceRange = document.getElementById('test5');//This slider will not appear until you link up nouislider.js and nouislider.css
+			noUiSlider.create(slider, {
+				start: [20, 80],
+				connect: true,
+				step: 1,
+				range: {
+					'min': 0,
+					'max': 100
+				},
+				format: wNumb({
+						decimals: 0
+					})
+				});*/
+	</script>
+</div>
+
+</body>
 </html>
