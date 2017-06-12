@@ -13,10 +13,29 @@
 	<!-- Load ExCommute style -->
 	<link rel="stylesheet" href="assets/css/style.css">
 
+	<!-- Load the scripts in order of required scope. The scripts are downloaded
+	together (in parallel to the loading of the HTML) and executed in order. -->
+
+	<!-- Load JQuery -->
+	<script
+		src="https://code.jquery.com/jquery-3.2.1.min.js"
+		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		crossorigin="anonymous" defer></script>
+
+	<!-- Load Materialize framework -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js" defer></script>
+
+	<!-- Load ExCommute -->
+	<script src="assets/javascript/ExCommute.js"></script>
+
 	<!--Load NoUiSlider CSS
 	<link rel="stylesheet" href="../noUiSlider.10.0.0/nouislider.css">
 	-->
 
+	<!--NoUiSlider JS and CSS
+	<script src="../noUiSlider.10.0.0/nouislider.js"></script>
+		<script src="assets/javascript/display.js"></script>
+	-->
 </head>
 
 <body>
@@ -201,31 +220,5 @@
 	</script>
 </div>
 
-<!-- Load the scripts in order of required scope. The scripts are downloaded
-together and executed in order after any pending CSS. Blocks rendering until
-complete. Putting the script loading at the bottom may provide a performance
-boost. -->
-
-<!-- Load JQuery -->
-<script
-	src="https://code.jquery.com/jquery-3.2.1.min.js"
-	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	crossorigin="anonymous"></script>
-
-<!-- Load Materialize framework -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-
-<!--NoUiSlider JS and CSS
-<script src="../noUiSlider.10.0.0/nouislider.js"></script>
-	<script src="assets/javascript/display.js"></script>
--->
-
-<!-- Load ExCommute -->
-<script src="assets/javascript/webapis.js"></script>
-<script src="assets/javascript/map.js"></script>
-<script src="assets/javascript/maps-demo.js"></script>
-<script src="assets/javascript/app.js"></script>
-	
 </body>
-
 </html>

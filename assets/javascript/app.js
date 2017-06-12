@@ -30,28 +30,8 @@ function main() {
     // When the map is ready, the mapReady callback is called
     //
     $("body").append(
-        "<script async defer src=\"https://maps.googleapis.com/maps/api/js?key=" + ExCommuteNs.getMapApiKey() + "&callback=ExCommuteNs.mapReady\">"
+         "<script async defer src=\"https://maps.googleapis.com/maps/api/js?key=" + ExCommuteNs.getMapApiKey() + "&callback=ExCommuteNs.mapReady\">"
     );
 
     return true;
 }
-
-/**
- * JavaScript Module Pattern: In-Depth
- * See [JS Module Pattern]{@link http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html ModulePattern}
- * 
- * All of the code that runs inside the function lives in a closure, which
- * provides privacy and state throughout the lifetime of our application.
- * 
- * The namespace can be augmented across files. The global jQuery object is
- * imported into the namespace as the '$' symbol.
- */
-var ExCommuteNs = (function (ns) {
-    ns.mapReadyCallback = function(state) { return state; }
-    ns.getMapApiKey = function() { return "AIzaSyACHyy4EKCvJRIlk3KM17nVdZCmltZUTGw"; }
-    ns.mapReady = function() {
-        console.log("Google Map API initialized!");
-        ns.mapReadyCallback({});
-    }
-	return ns;
-}(ExCommuteNs || {}));
