@@ -38,13 +38,18 @@
 		 		//insert API function here to fetch results according to filters
 		 		if(search){
 		 		var map = $("#map");
+		 		var mapResult = $("<div>").addClass("row");
+		 		$("mapResult").css("height":"100%","width":"100%");
+		 		$("mapResult").prepend("#map");
+		 		$("map").css("height":"100%","width":"100%");
 		 		$("map").show();
 		 		$("form").hide();
 		 		$("button").hide();
 		 		$("h4").hide();
 		 		$("h5").hide();
+
 		 	}else{
-		 		$("#map").hide();
+		 		$("map").hide();
 		 		$(".card-panel").hide();
 
 		 	};
