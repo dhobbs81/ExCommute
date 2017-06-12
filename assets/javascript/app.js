@@ -33,5 +33,7 @@ function main() {
          "<script async defer src=\"https://maps.googleapis.com/maps/api/js?key=" + ExCommuteNs.getMapApiKey() + "&callback=ExCommuteNs.mapReady\">"
     );
 
+    doDisplay();
+
     return true;
 }

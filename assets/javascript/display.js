@@ -1,4 +1,8 @@
- $(document).ready(function (){
+ //Sniff around for scope conflicts and issues. They can't hide forever...
+ function doDisplay() {
+
+ 			console.log("Entered doDisplay");
+
 			 /*The dialogue interacting w/ user*/
 		 	var dialogueDropdown = $('.dropdown-button').dropdown({
 			      inDuration: 300,
@@ -34,10 +38,12 @@
 		 		console.log(textClear); //Clear button appears not to be working. Work on that.
 		 		console.log(sliderClear);
 		 	});
-		 	
-		 	var search = $("#submit").click(function(){
+
+	 		$("#map").hide();
+	 		$(".card-panel").hide();
+
+		 	$("#submit").click(function(){
 		 		//insert API function here to fetch results according to filters
-		 		if(search){
 		 		var map = $("#map");
 		 		var mapResult = $("<div>").addClass("row");
 		 		$("mapResult").css({"height":"100%","width":"100%"});
@@ -48,14 +54,17 @@
 		 		$("button").hide();
 		 		$("h4").hide();
 		 		$("h5").hide();
-
-		 	}else{
-		 		$("map").hide();
-		 		$(".card-panel").hide();
-
-		 	};
 		 	});
 
+		 	//This can display GoogleMaps options.
+		 	function myMap() {
+   				var mapCanvas = document.getElementById("map");
+    			var mapOptions = {
+        				center: new google.maps.LatLng(51.5, -0.2),
+       					zoom: 10
+    			};
+    			var mapLetOurPowersCombine = new google.maps.Map(mapCanvas, mapOptions);
+			};
 		 	/*You need to be ready for the CSS to integrate w/ GoogleMaps API properly. 
 		 	Highlight selected properties, make markers highly visible and legible. 
 		 	Create spaces where additional dialogue info can be displayed, either w/ mouse click or hover.*/
@@ -64,52 +73,57 @@
 
 		 	 //var queryURL = /*insert url base here*/ + /*insert variable here*/ + /*insert API key here*/;
      
-        /*!!Ignore the following step. We are hiding the search input after user searches!!*/   	//Make the user input available to view and edit while results are visible. User input will probably also need to be compressible.
+        /*!!IGNORE THE FOLLOWING STEP. We are hiding the search input after user searches!!*/   	
+        	//Make the user input available to view and edit while results are visible. User input will probably also need to be compressible.
         
 
-        //if($("map").show()){
-        	//$("#user-input").css({"float":"top", "height":"0.5em", "width":"0.5em"});
-       // };//Now how do we expand and contract our user-input form while the map is on display?
-        
-        /*var editInput = function(){
-        	var editMessage = $("h3").html("You can edit your filters by clicking here!");
-        	var editExpand = $("button");
-        	$("editExpandCommand").create(editMessage);
-        	$("editExpandCommand").css({float:right});
-        	var editExpandAccomplished = $("editExpandCommand").click(function(){
-        		$("#user-input").css({"height":"0.5em", "width":"0.5em", "float":"right"});//.css() methods do not follow CSS stylesheet rules. No semicolons, and always quote your CSS elements and properties.
-        		    });
-        	var editContract = function(){
-        		if $("editExpandAccomplished"){
+	        //if($("map").show()){
+	        	//$("#user-input").css({"float":"top", "height":"0.5em", "width":"0.5em"});
+	       // };//Now how do we expand and contract our user-input form while the map is on display?
+	        
+	        /*var editInput = function(){
+	        	var editMessage = $("h3").html("You can edit your filters by clicking here!");
+	        	var editExpand = $("button");
+	        	$("editExpandCommand").create(editMessage);
+	        	$("editExpandCommand").css({float:right});
+	        	var editExpandAccomplished = $("editExpandCommand").click(function(){
+	        		$("#user-input").css({"height":"0.5em", "width":"0.5em", "float":"right"});//.css() methods do not follow CSS stylesheet rules. No semicolons, and always quote your CSS elements and properties.
+	        		    });
+	        	var editContract = function(){
+	        		if $("editExpandAccomplished"){
 
-        		};
-        	};
-        };*/
+	        		};
+	        	};
+	        };*/
 	 	
-		 	/*You need to be ready for the CSS to integrate w/ GoogleMaps API properly. 
-		 	Highlight selected properties, make markers highly visible and legible. 
-		 	Create spaces where additional dialogue info can be displayed, either w/ mouse click or hover.*/
-		 	var map = $("#map");
+	 	/*You need to be ready for the CSS to integrate w/ GoogleMaps API properly. 
+	 	Highlight selected properties, make markers highly visible and legible. 
+	 	Create spaces where additional dialogue info can be displayed, either w/ mouse click or hover.*/
+	 	var map = $("#map");
 
-		 	 //var queryURL = /*insert url base here*/ + /*insert variable here*/ + /*insert API key here*/;
+	 	 //var queryURL = /*insert url base here*/ + /*insert variable here*/ + /*insert API key here*/;
      
-        //Make the user input available to view and edit while results are visible. User input will probably also need to be compressible.
+        /*!!IGNORE THE FOLLOWING STEP. We are hiding the search input after user searches!!*/ 
+        	//Make the user input available to view and edit while results are visible. User input will probably also need to be compressible.
+        /*
         if($("map").show()){
         	$("#user-input").show();
         	$("#user-input").css({float:"top"});
-        }else {
-        	$("#user-input").hide();
+        }
+        else {
+        	$("#user-input").hide();        
+       };
+      */
 
-        };//Now how do we expand and contract our user-input form while the map is on display?
         var editInput = function(){
         	var editMessage = $("h3").html("You can edit your filters by clicking here!");
         	var editExpand = $("button");
         	$("editExpand").create(editMessage);
         	$("editExpand").css({float:right});
         	$("editExpand").click(function() {
-        		$("#user-input").css({height:0.5em; width: 0.5em; float:right});
+        		$("#user-input").css({height:"0.5em", width: "0.5em", float:"right"});
         	});
         };
         
 
-	 	 });//End document.ready
+}

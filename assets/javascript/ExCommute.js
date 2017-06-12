@@ -26,6 +26,7 @@ var ExCommuteNs = (function (ns) {
 		"webapis.js",
 		"map.js",
 		"maps-demo.js",
+		"display.js",
 		"app.js"
 	]; 
 
