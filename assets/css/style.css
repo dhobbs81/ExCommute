@@ -25,7 +25,7 @@ footer.page-footer{height:1em; padding-top:0px;}
 #submit{} 
 #header{position:fixed; top:0px; float:top; background-color:#f1e8f7; background-opacity:100%; width:100%; border-width:2px; border-color:black; border-style:solid; z-index:1;}
 #main-body{margin:150px;}
-#map{border-color:#ee9105; border-width:2px; border:solid; height:350px;width:350px;float:left;}
+#map{border-color:#ee9105; border-width:2px; border:solid; height:350px; width:350px; float:right;}
 #back-to-top{}
 #going-up{float:right;}
 #test5{margin:0px; padding-top:15px; padding-bottom:15px; background-color:#f1e8f7; border-color:#998aca;} /*The slider*/

@@ -54,6 +54,7 @@
 		 		$("button").hide();
 		 		$("h4").hide();
 		 		$("h5").hide();
+		 		$("")
 		 	});
 
 		 	//This can display GoogleMaps options.
@@ -64,6 +65,44 @@
        					zoom: 10
     			};
     			var mapLetOurPowersCombine = new google.maps.Map(mapCanvas, mapOptions);
+			};
+
+			function houseInfo () {
+				var house = $(/*Insert API representing map markers here*/);
+				var infoPopup = $("house").click(function(){
+					var cardRow = $("<div>").addClass("row");
+					var cardColumn = $("<div>").addClass("col s12 m5");
+					var cardRowWithColumn = $("cardRow").append("cardColumn");
+					var cardPanel = $("<div>").addClass("card-panel teal");
+					var cardColumnWithPanel = $("cardColumn").append("cardPanel");
+					var cardInfo = $("<span>").addClass("white-text");
+					var cardPanelWithInfo = $("cardPanel").append("cardInfo"); 
+					//You'll need to insert API for information on the clicked house. Be sure to add arbitrary color coding.
+				});
+			};
+
+			function colorCode () {
+				var distance = /*Grab some API which will calculate distance between selected house and work address.*/
+				//Watch out for scope! Some of your variables are local variables from the previous function!
+				var cardRow = $("<div>").addClass("row");
+				var cardColumn = $("<div>").addClass("col s12 m5");
+				var cardRowWithColumn = $("cardRow").append("cardColumn");
+				var cardPanel = $("<div>").addClass("card-panel teal");
+				var cardColumnWithPanel = $("cardColumn").append("cardPanel");
+				var cardInfo = $("<span>").addClass("white-text");
+				var cardPanelWithInfo = $("cardPanel").append("cardInfo"); 
+				if(distance =< 5){
+					$("cardPanel").css("border":"2px solid green");
+					$("cardPanelWithInfo").append("a short commute to work");
+				};
+				else if(5 < distance && distance < 15){
+					$("cardPanel").css("border":"2px solid yellow");
+					$("cardPanelWithInfo").append("a fairly distant commute to work");
+				};
+				else{
+					$("cardPanel").css("border":"2px solid red");
+					$("cardPanelWithInfo").append("a long commute to work");
+				};
 			};
 		 	/*You need to be ready for the CSS to integrate w/ GoogleMaps API properly. 
 		 	Highlight selected properties, make markers highly visible and legible. 
