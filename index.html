@@ -42,10 +42,15 @@
               <span class="card-title center-align">Search</span>
 
               <div class="row">
+                <div id="locationField">
+                  <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
+                </div>
+              <!--
                 <div class="input-field col s12">
                     <input placeholder="enter address here" id="address-street" type="text" class="validate">
                     <label for="street-address">Street Address</label>
                 </div>
+              -->
               </div>
 
               <div class="row">
@@ -93,7 +98,8 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js" defer></script>
   <script src="assets/javascript/ExCommute.js" defer></script>
-
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACHyy4EKCvJRIlk3KM17nVdZCmltZUTGw&libraries=places&callback=initAutocomplete"
+        async defer></script>
 </body>
 
 </html>

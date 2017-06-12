@@ -58,12 +58,12 @@ var ExCommuteNs = (function (ns) {
 	//
 	// Setup Google Map API and provide callbacks
 	//
-    ns.mapReadyCallback = function(state) { return state; }
-    ns.getMapApiKey = function() { return "AIzaSyACHyy4EKCvJRIlk3KM17nVdZCmltZUTGw"; }
-    ns.mapReady = function() {
-        console.log("Google Map API initialized!");
-        ns.mapReadyCallback({});
-    }
+    //ns.mapReadyCallback = function(state) { return state; }
+    //ns.getMapApiKey = function() { return "AIzaSyACHyy4EKCvJRIlk3KM17nVdZCmltZUTGw"; }
+    //ns.mapReady = function() {
+  //      console.log("Google Map API initialized!");
+  //      ns.mapReadyCallback({});
+  //  }
 
 	return ns;
 }(ExCommuteNs || {}));

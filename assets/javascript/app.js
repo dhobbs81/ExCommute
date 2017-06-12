@@ -16,7 +16,7 @@ $(main);
  * @returns true if there were no critical errors
  */
 function main() {
-    
+
     // This application is entirely event driven. The events include input from
     // the user via text entry and clicks. Other events include database
     // callbacks, map related events, and completion of web API calls.
@@ -24,14 +24,14 @@ function main() {
     // Initialize the database
     // Initialize the web APIs
     // Initialize the UI framework
-    
+
     //
     // Initialize the map by calling ExCommuteNs.MapNs.initMap()
     // When the map is ready, the mapReady callback is called
     //
-    $("body").append(
-         "<script async defer src=\"https://maps.googleapis.com/maps/api/js?key=" + ExCommuteNs.getMapApiKey() + "&callback=ExCommuteNs.mapReady\">"
-    );
+  //  $("body").append(
+  //       "<script async defer src=\"https://maps.googleapis.com/maps/api/js?key=" + ExCommuteNs.getMapApiKey() + "&callback=ExCommuteNs.mapReady\">"
+  //  );
 
     return true;
 }
