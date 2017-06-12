@@ -39,9 +39,9 @@
 		 		if(search){
 		 		var map = $("#map");
 		 		var mapResult = $("<div>").addClass("row");
-		 		$("mapResult").css("height":"100%","width":"100%");
+		 		$("mapResult").css({"height":"100%","width":"100%"});
 		 		$("mapResult").prepend("#map");
-		 		$("map").css("height":"100%","width":"100%");
+		 		$("map").css({"height":"100%","width":"100%"});
 		 		$("map").show();
 		 		$("form").hide();
 		 		$("button").hide();
