@@ -103,9 +103,9 @@ ExCommuteNs.MapNs = (function ($) {
           lng: position.coords.longitude
         };
         setWorkplacePosition(pos);
-        infoWindow.setPosition(pos);
-        infoWindow.setContent('Location found.');
-        infoWindow.open(map);
+        //infoWindow.setPosition(pos);
+        //infoWindow.setContent('Location found.');
+        //infoWindow.open(map);
         map.setCenter(pos);
       }, function() {
         handleLocationError(map, true, infoWindow, map.getCenter());
@@ -146,10 +146,20 @@ ExCommuteNs.MapNs = (function ($) {
     // infoWindow.open(map);
   }
   var houseMarkers = [];
-  ns.showHouses = function(map) {
+  ns.showHouses = function(map, address, distance) {
+
+      var commaSeparatedAddress = address.split(",");
+      var address1 = commaSeparatedAddress.splice(0, 1);
+      var address2 = commaSeparatedAddress.join(",");
+      console.log("TEST STRING!!!!!!!!!!!!!!!! : " + address1 + address2 + ", Range: " + distance);
+
+//        "5676 Century 21 Blvd",
+//        "Orlando, FL 32807",
+
       ExCommuteNs.WebApisNs.retrieveHousesByAddress(
-        "5676 Century 21 Blvd",
-        "Orlando, FL 32807",
+        address1,
+        address2,
+        distance,
         function (houses) {
             console.log("Got a set of houses!");
             ExCommuteNs.MapNs.getCoordsFromAddresses(
@@ -237,6 +247,32 @@ ExCommuteNs.MapNs = (function ($) {
           setWorkplacePosition({ lat: place.lat, lng: place.lng });
         }
     });
+  }
+
+  ns.gotoWorkplace = function (map) {
+    console.log("Entered goto Workplace");
+    var pos = getWorkplacePosition().getPosition();
+    console.log(pos.lat() + ", " + pos.lng());
+
+    var goldStar = {
+      path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
+      fillColor: 'yellow',
+      fillOpacity: 0.8,
+      scale: 0.1,
+      strokeColor: 'gold',
+      strokeWeight: 5
+    };
+
+    var posMarker = new google.maps.Marker({
+      position: { lat: pos.lat(), lng: pos.lng() },
+      icon: goldStar,
+      map: map
+    });
+
+    // If the map is being drawn, trigger an event to force a redraw
+    google.maps.event.trigger(map, 'resize');
+
+    map.panTo(posMarker.getPosition());
   }
 
   ns.getCoordsFromAddresses = function(places, returnCoords) {
