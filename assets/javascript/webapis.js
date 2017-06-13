@@ -55,17 +55,41 @@ ExCommuteNs.WebApisNs = (function ($) {
   }
 
   //called to set up ajax request and  set callback
-  ns.retrieveHouses = function (mapCallback) {
-    var url = "https://search.onboard-apis.com/propertyapi/v1.0.0/property/address";
-    var parameters = $.param({
-      'address1': "10838 Heather Ridge Circle",
-      'address2': "Orlando, FL 32817",
-      'radius': 10,
-      'orderby': "salesearchdate",
-      'pagesize': 25
-    });
+  ns.retrieveHousesByAddress = function (address1, address2, distance, mapCallback) {
 
-    url += "?" + parameters;
+    if ( (address1) && (address2) ) {
+      var parameters = $.param({
+        'address1': address1,
+        'address2': address2,
+        'radius': distance,
+        'orderby': "salesearchdate",
+        //'orderby': "distance",
+        'pagesize': 25
+      });
+      console.log("Params: " + parameters);
+      ns.retrieveHouses(mapCallback, parameters);
+    } 
+  }
+
+  //called to set up ajax request and  set callback
+  ns.retrieveHouses = function (mapCallback, params) {
+    var url = "https://search.onboard-apis.com/propertyapi/v1.0.0/property/address";
+
+    // if (params) {
+    //   parameters = $.param({
+    //     'address1': params.address1,
+    //     'address2': params.address2,
+    //     'radius': params.distance,
+    //     'orderby': "salesearchdate",
+    //     'pagesize': 25
+    //   });
+    // }
+    // else {
+    //   parameters = params;
+    // }
+
+    url += "?" + params;
+    console.log("URL: " + url);
 
     if (window.localStorage.getItem(url)) {
       console.log("retrieving from cache");

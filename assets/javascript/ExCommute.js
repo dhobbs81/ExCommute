@@ -79,6 +79,7 @@ var ExCommuteNs = (function (ns) {
 // 	//"https://maps.googleapis.com/maps/api/js?key=" + ExCommuteNs.getMapApiKey() + "&callback=ExCommuteNs.mapReady>",
 // 	true
 // );
+//var googleMapApiSrc = "<script async defer src=\"https://maps.googleapis.com/maps/api/js?key=" + ExCommuteNs.getMapApiKey() + "&callback=ExCommuteNs.mapReady\">";
 
 // Include the ExCommute scripts
 ExCommuteNs.loadScripts();
