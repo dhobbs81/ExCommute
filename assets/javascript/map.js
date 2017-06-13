@@ -146,10 +146,20 @@ ExCommuteNs.MapNs = (function ($) {
     // infoWindow.open(map);
   }
   var houseMarkers = [];
-  ns.showHouses = function(map) {
+  ns.showHouses = function(map, address, distance) {
+
+      var commaSeparatedAddress = address.split(",");
+      var address1 = commaSeparatedAddress.splice(0, 1);
+      var address2 = commaSeparatedAddress.join(",");
+      console.log("TEST STRING!!!!!!!!!!!!!!!! : " + address1 + address2 + ", Range: " + distance);
+
+//        "5676 Century 21 Blvd",
+//        "Orlando, FL 32807",
+
       ExCommuteNs.WebApisNs.retrieveHousesByAddress(
-        "5676 Century 21 Blvd",
-        "Orlando, FL 32807",
+        address1,
+        address2,
+        distance,
         function (houses) {
             console.log("Got a set of houses!");
             ExCommuteNs.MapNs.getCoordsFromAddresses(

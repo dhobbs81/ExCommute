@@ -54,14 +54,12 @@ var ExCommuteNs = (function (ns) {
         console.log("TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
         console.log(searchParams);
         params = searchParams;
+        ExCommuteNs.MapNs.showHouses(map, params.address, params.range);
     }
 
     ns.mapReadyCallback = function() {
 
         map = ExCommuteNs.MapNs.initMap(12);
-
-        ExCommuteNs.MapNs.showHouses(map);
-
         initAutocomplete();
     }
     return ns;
