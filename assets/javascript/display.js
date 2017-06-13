@@ -10,13 +10,21 @@ $(document).ready(function() {
 
 
 $("#search-button").on("click", function() {
-  $("#onboard-card").slideUp(1000);
-  $("#search-card").fadeIn(1000);
+  $("#onboard-card").slideUp("fast");
+  $("#search-card").fadeIn("fast");
 });
 
 $("#submit-button").on("click", function() {
-  $("#entry-page").slideUp(1000);
-  $("#main-page").fadeIn(1000);
+  $("#entry-page").slideUp("fast");
+  $("#main-page").fadeIn("fast", function() {
+    var params = {};
+    params.address = $("#autocomplete").val().trim();
+    //var selectval = document.getElementById("range-select").value;
+    params.range = $("#range-select").val();
+    params.price = $("#price-select option:selected").text();
+    ExCommuteNs.setSearchParams(params);
+    ExCommuteNs.showMap();
+  });
 });
 
 

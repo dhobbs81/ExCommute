@@ -42,21 +42,25 @@ function main() {
  * If the ExCommuteNs is undefined, then define ExCommuteNs.
  */
 var ExCommuteNs = (function (ns) {
+
+    var map = {};
+    var params = {};
+
+    ns.showMap = function() {
+        ExCommuteNs.MapNs.gotoWorkplace(map);
+    }
+
+    ns.setSearchParams = function (searchParams) {
+        console.log("TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
+        console.log(searchParams);
+        params = searchParams;
+    }
+
     ns.mapReadyCallback = function() {
 
-        $("#map").css({
-            "width": "100%",
-        });
-
-        var map = ExCommuteNs.MapNs.initMap();
+        map = ExCommuteNs.MapNs.initMap();
 
         ExCommuteNs.MapNs.showHouses(map);
-
-        //var autocomplete = new google.maps.places.Autocomplete(
-        // /** @type {!HTMLInputElement} */
-        // (document.getElementById('autocomplete')), {
-        //     types: ['geocode']
-        //;
 
         initAutocomplete();
     }

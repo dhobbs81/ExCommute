@@ -103,9 +103,9 @@ ExCommuteNs.MapNs = (function ($) {
           lng: position.coords.longitude
         };
         setWorkplacePosition(pos);
-        infoWindow.setPosition(pos);
-        infoWindow.setContent('Location found.');
-        infoWindow.open(map);
+        //infoWindow.setPosition(pos);
+        //infoWindow.setContent('Location found.');
+        //infoWindow.open(map);
         map.setCenter(pos);
       }, function() {
         handleLocationError(map, true, infoWindow, map.getCenter());
@@ -237,6 +237,19 @@ ExCommuteNs.MapNs = (function ($) {
           setWorkplacePosition({ lat: place.lat, lng: place.lng });
         }
     });
+  }
+
+  ns.gotoWorkplace = function (map) {
+    console.log("Entered goto Workplace");
+    var pos = getWorkplacePosition().getPosition();
+    console.log(pos.lat() + ", " + pos.lng());
+
+    var posMarker = new google.maps.Marker({
+      position: { lat: pos.lat(), lng: pos.lng() }
+    });
+    map.panTo(posMarker.getPosition());
+    //google.maps.event.trigger(map, 'bounds_changed');
+    google.maps.event.trigger(map, 'resize');
   }
 
   ns.getCoordsFromAddresses = function(places, returnCoords) {
