@@ -51,16 +51,16 @@ var ExCommuteNs = (function (ns) {
     }
 
     ns.setSearchParams = function (searchParams) {
-        console.log("TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
-        console.log(searchParams);
         params = searchParams;
         ExCommuteNs.MapNs.showHouses(map, params.address, params.range);
     }
 
     ns.mapReadyCallback = function() {
-
-        map = ExCommuteNs.MapNs.initMap(12);
+        // Initialize the infobox plugin
+        // InfoBox extends OverlayView in the Google Maps API v3.
         initAutocomplete();
+        map = ExCommuteNs.MapNs.initMap(12);
     }
+
     return ns;
 }(ExCommuteNs || {}));

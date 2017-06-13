@@ -27,7 +27,7 @@ var ExCommuteNs = (function (ns) {
 		"map.js",
 		"maps-demo.js",
 		"display.js",
-		"app.js"
+		"app.js",
 	]; 
 
 	ns.includeScript = function(name, path, async = false) {
@@ -41,9 +41,8 @@ var ExCommuteNs = (function (ns) {
 		script.setAttribute("defer", "");
 		if (async) {
 			script.setAttribute("async", "");
-
 		}
-		document.getElementsByTagName('head')[0].appendChild(script);
+		document.getElementsByTagName("head")[0].appendChild(script);
 	}
 
 	// 
@@ -62,6 +61,10 @@ var ExCommuteNs = (function (ns) {
     ns.getMapApiKey = function() { return "AIzaSyACHyy4EKCvJRIlk3KM17nVdZCmltZUTGw"; }
     ns.mapReady = function() {
         console.log("Google Map API initialized!");
+
+        // Include the ExCommute scripts
+        //ExCommuteNs.loadScripts();
+
         ns.mapReadyCallback({});
     }
 
@@ -71,15 +74,18 @@ var ExCommuteNs = (function (ns) {
 //
 // Include the Google Maps API
 //
-// Initialize the map by calling ExCommuteNs.MapNs.initMap()
-// When the map is ready, the mapReady callback is called
-//
-// ExCommuteNs.includeScript("Google Maps API",
-// 	"https://maps.googleapis.com/maps/api/js?key=" + ExCommuteNs.getMapApiKey() + "&callback=test>",
-// 	//"https://maps.googleapis.com/maps/api/js?key=" + ExCommuteNs.getMapApiKey() + "&callback=ExCommuteNs.mapReady>",
-// 	true
-// );
-//var googleMapApiSrc = "<script async defer src=\"https://maps.googleapis.com/maps/api/js?key=" + ExCommuteNs.getMapApiKey() + "&callback=ExCommuteNs.mapReady\">";
+// var mapsrc = "https://maps.googleapis.com/maps/api/js?key=" + ExCommuteNs.getMapApiKey() + "&callback=ExCommuteNs.mapReady&libraries=places";
+
+// var script = document.createElement('script');
+// script.onload = function() {
+// 	console.log("Loaded google map api script");
+// };
+// script.src = mapsrc;
+// // Deferred scripts will be fetched in parallel to the parsing of the HTML
+// // document. When the document is parsed, the scripts are executed in order.
+// script.setAttribute("defer", "");
+// script.setAttribute("async", "");
+// document.getElementsByTagName('head')[0].appendChild(script);
 
 // Include the ExCommute scripts
 ExCommuteNs.loadScripts();
