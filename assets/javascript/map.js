@@ -196,9 +196,33 @@ ExCommuteNs.MapNs = (function ($) {
         var marker = new google.maps.Marker({
           position: pos,
           title: "house",
-          icon: loc.icon
-//        icon: icon
+          icon: loc.icon,
+          animation: google.maps.Animation.DROP
         });
+
+        marker.addListener('click', function() {
+          if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+          } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+          }
+        });
+
+        var contentString = 'Hello World!<br>Price:'+loc.price+'<br>Time:'+ loc.duration; //+'<br>'+deleteButton;
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+
+        // Next line same as  google.maps.event.addListener(home.marker, 'click', function()...???
+        // I think the former notation is overkill if you already have a reference to a specific marker.  Not tested though.
+        //  Saw Google docs exaples for both notations when click handlers are deployed.
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
+        loc.marker = marker;
+
         locationMarkers.push(marker);
       }
     );
