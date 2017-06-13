@@ -58,7 +58,7 @@ var ExCommuteNs = (function (ns) {
 
     ns.mapReadyCallback = function() {
 
-        map = ExCommuteNs.MapNs.initMap();
+        map = ExCommuteNs.MapNs.initMap(12);
 
         ExCommuteNs.MapNs.showHouses(map);
 

@@ -244,12 +244,25 @@ ExCommuteNs.MapNs = (function ($) {
     var pos = getWorkplacePosition().getPosition();
     console.log(pos.lat() + ", " + pos.lng());
 
+    var goldStar = {
+      path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
+      fillColor: 'yellow',
+      fillOpacity: 0.8,
+      scale: 0.1,
+      strokeColor: 'gold',
+      strokeWeight: 5
+    };
+
     var posMarker = new google.maps.Marker({
-      position: { lat: pos.lat(), lng: pos.lng() }
+      position: { lat: pos.lat(), lng: pos.lng() },
+      icon: goldStar,
+      map: map
     });
-    map.panTo(posMarker.getPosition());
-    //google.maps.event.trigger(map, 'bounds_changed');
+
+    // If the map is being drawn, trigger an event to force a redraw
     google.maps.event.trigger(map, 'resize');
+
+    map.panTo(posMarker.getPosition());
   }
 
   ns.getCoordsFromAddresses = function(places, returnCoords) {
