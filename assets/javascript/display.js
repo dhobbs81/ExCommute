@@ -61,7 +61,13 @@ function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete(
     /** @type {!HTMLInputElement} */
     (document.getElementById('autocomplete')), {
-      types: ['geocode']
+      //types: ['geocode', 'regions']
+      ///types: ['geocode']
+      //types: ['address'],
+      types: ['address'],
+      componentRestrictions: {
+        country: 'us'
+      }
     });
 
   // When the user selects an address from the dropdown, populate the address
@@ -73,15 +79,23 @@ function fillInAddress() {
   // Get the place details from the autocomplete object.
   var place = autocomplete.getPlace();
 
-  for (var component in componentForm) {
-    document.getElementById(component).value = '';
-    document.getElementById(component).disabled = false;
-  }
+  // for (var component in componentForm) {
+  //   document.getElementById(component).value = '';
+  //   document.getElementById(component).disabled = false;
+  // }
 
   // Get each component of the address from the place details
   // and fill the corresponding field on the form.
   for (var i = 0; i < place.address_components.length; i++) {
     var addressType = place.address_components[i].types[0];
+
+    var types = place.address_components[i].types;
+
+    console.log("Autocomplete dumping types: ");
+    types.forEach(function (item) {
+      console.log(item);
+    });
+
     if (componentForm[addressType]) {
       var val = place.address_components[i][componentForm[addressType]];
       document.getElementById(addressType).value = val;
