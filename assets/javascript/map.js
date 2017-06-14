@@ -250,7 +250,7 @@ ExCommuteNs.MapNs = (function ($) {
         "elementType": "labels.icon",
         "stylers": [
           {
-            "visibility": "off"
+            "visibility": "on"
           }
         ]
       },
@@ -295,7 +295,7 @@ ExCommuteNs.MapNs = (function ($) {
         "elementType": "labels",
         "stylers": [
           {
-            "visibility": "off"
+            "visibility": "on"
           }
         ]
       },
@@ -475,14 +475,6 @@ ExCommuteNs.MapNs = (function ($) {
           map: map
         });
 
-        marker.addListener('click', function() {
-          if (marker.getAnimation() !== null) {
-            marker.setAnimation(null);
-          } else {
-            marker.setAnimation(google.maps.Animation.BOUNCE);
-          }
-        });
-
         var driveTimeRoundedMinutes = Math.ceil(loc.duration / 60);
 
         var contentString = 
@@ -512,7 +504,6 @@ ExCommuteNs.MapNs = (function ($) {
         });
 
         setupInfoWindow(infowindow);
-
         infowindows.push(infowindow);
 
         marker.addListener('click', function() {
@@ -558,6 +549,7 @@ ExCommuteNs.MapNs = (function ($) {
         // Event that closes the Info Window with a click on the map
         google.maps.event.addListener(map, 'click', function() {
           marker.setAnimation(null);
+          infowindow.directions.setMap(null);
           infowindow.close();
         });
 

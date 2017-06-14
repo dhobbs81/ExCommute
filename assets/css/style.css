@@ -8,6 +8,8 @@ body, html{
 
 body{
   background-image: url("../media/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 #main-page{

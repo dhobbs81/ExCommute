@@ -10,8 +10,10 @@ $(document).ready(function() {
 
 
 $("#search-button").on("click", function() {
-  $("#onboard-card").slideUp("fast");
-  $("#search-card").fadeIn("fast");
+  console.log("Search button clicked!!!");
+  $("#main-page").slideUp("fast");
+  $("#entry-page").fadeIn("slow");
+  $("#search-card").fadeIn("slow");
 });
 
 $("#submit-button").on("click", function() {
