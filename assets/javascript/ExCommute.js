@@ -58,7 +58,13 @@ var ExCommuteNs = (function (ns) {
 	// Setup Google Map API and provide callbacks
 	//
     ns.mapReadyCallback = function(state) { return state; }
-    ns.getMapApiKey = function() { return "AIzaSyACHyy4EKCvJRIlk3KM17nVdZCmltZUTGw"; }
+    ns.getMapApiKeyBrowser = function() { 
+		return "AIzaSyACHyy4EKCvJRIlk3KM17nVdZCmltZUTGw"; 
+	}
+    ns.getMapApiKey = function() { 
+		//return "AIzaSyC_8K1zwbB9_U7WrZSmAnuX00A3kE_TgrQ";
+		return "AIzaSyBzziblf_2N9Vfdnzksran3DyIfF-1p_xo";
+	}
     ns.mapReady = function() {
         console.log("Google Map API initialized!");
 
