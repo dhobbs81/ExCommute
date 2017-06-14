@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="scrape.js"></script>
+    <meta charset="utf-8">
+    <title>OnboardAPI Scraper</title>
+  </head>
+  <body>
+    <div class="trivia-panel container">
+      <div id="start">
+        <div class="row row-centered">
+          <div id="startButton" class="col-md-2 col-centered">
+            <button id="startButtonInner" type="button" class="btn btn-sharp btn-danger">Begin Your Suffering!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="trivia-panel container">
+      <div id="start">
+        <div class="row row-centered">
+          <div id="startButton" class="col-md-2 col-centered">
+            <button id="doomButton" type="button" class="btn btn-sharp btn-danger">doom</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-database.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDgjoDG3g3rTUTtpBjaDJormPitnzKEC3M",
+        authDomain: "excommute-cd036.firebaseapp.com",
+        databaseURL: "https://excommute-cd036.firebaseio.com",
+        projectId: "excommute-cd036",
+        storageBucket: "excommute-cd036.appspot.com",
+        messagingSenderId: "409555167143"
+      };
+      firebase.initializeApp(config);
+    </script>
+  </body>
+</html>
