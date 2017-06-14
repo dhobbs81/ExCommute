@@ -42,23 +42,21 @@ function main() {
  * If the ExCommuteNs is undefined, then define ExCommuteNs.
  */
 var ExCommuteNs = (function (ns) {
-    ns.mapReadyCallback = function() {
 
-        $("#map").css({
-            "width": "100%",
-        });
+    var map = {};
+    var params = {};
 
-        var map = ExCommuteNs.MapNs.initMap();
-
-        ExCommuteNs.MapNs.showHouses(map);
-
-        //var autocomplete = new google.maps.places.Autocomplete(
-        // /** @type {!HTMLInputElement} */
-        // (document.getElementById('autocomplete')), {
-        //     types: ['geocode']
-        //;
-
-        initAutocomplete();
+    ns.showMap = function(params) {
+        ExCommuteNs.MapNs.gotoAddress(map, params.address);
+        ExCommuteNs.MapNs.showHouses(map, params.address, params.range);
     }
+
+    ns.mapReadyCallback = function() {
+        // Initialize the infobox plugin
+        // InfoBox extends OverlayView in the Google Maps API v3.
+        initAutocomplete();
+        map = ExCommuteNs.MapNs.initMap(12);
+    }
+
     return ns;
 }(ExCommuteNs || {}));

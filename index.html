@@ -5,13 +5,14 @@
 
 	<!-- Reset browser default style -->
 	<link rel="stylesheet" href="assets/css/html5reset.css">
+	<link rel="stylesheet" href="assets/css/infowindow.css">
 
 	<!-- Load materialize styles -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
 
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=BenchNine" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=BenchNine" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 	<!-- Load ExCommute style -->
 	<link rel="stylesheet" href="assets/css/style.css">
@@ -76,7 +77,7 @@
 
               <div class="row">
                 <div class="input-field col s6">
-                  <select>
+                  <select id="range-select">
                     <option value="" disabled selected>Choose your option</option>
                     <option value="5">5 Miles</option>
                     <option value="10">10 Miles</option>
@@ -112,6 +113,5 @@
   <div id="main-page">
     <div id="map"></div>
   </div>
-
 </body>
 </html>

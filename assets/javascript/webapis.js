@@ -55,14 +55,15 @@ ExCommuteNs.WebApisNs = (function ($) {
   }
 
   //called to set up ajax request and  set callback
-  ns.retrieveHousesByAddress = function (address1, address2, mapCallback) {
+  ns.retrieveHousesByAddress = function (address1, address2, distance, mapCallback) {
 
     if ( (address1) && (address2) ) {
       var parameters = $.param({
         'address1': address1,
         'address2': address2,
-        'radius': 10,
+        'radius': distance,
         'orderby': "salesearchdate",
+        //'orderby': "distance",
         'pagesize': 25
       });
       console.log("Params: " + parameters);
@@ -71,25 +72,23 @@ ExCommuteNs.WebApisNs = (function ($) {
   }
 
   //called to set up ajax request and  set callback
-  ns.retrieveHouses = function (mapCallback, params = "") {
+  ns.retrieveHouses = function (mapCallback, params) {
     var url = "https://search.onboard-apis.com/propertyapi/v1.0.0/property/address";
 
-    var parameters = "";
+    // if (params) {
+    //   parameters = $.param({
+    //     'address1': params.address1,
+    //     'address2': params.address2,
+    //     'radius': params.distance,
+    //     'orderby': "salesearchdate",
+    //     'pagesize': 25
+    //   });
+    // }
+    // else {
+    //   parameters = params;
+    // }
 
-    if (params) {
-      parameters = $.param({
-        'address1': "10838 Heather Ridge Circle",
-        'address2': "Orlando, FL 32817",
-        'radius': 10,
-        'orderby': "salesearchdate",
-        'pagesize': 25
-      });
-    }
-    else {
-      parameters = params;
-    }
-
-    url += "?" + parameters;
+    url += "?" + params;
     console.log("URL: " + url);
 
     if (window.localStorage.getItem(url)) {
@@ -101,6 +100,8 @@ ExCommuteNs.WebApisNs = (function ($) {
     } else {
       console.log("Making request to", url);
 
+      //"cache-control": "no-cache",
+      //"postman-token": "9a64831b-b44f-501f-b94b-4528059aca82"
       var settings = {
         "async": true,
         "crossDomain": true,
@@ -109,8 +110,6 @@ ExCommuteNs.WebApisNs = (function ($) {
         "headers": {
           "apikey": "e497790fddc100419fd40da7adce6d2c",
           "accept": "application/json",
-          "cache-control": "no-cache",
-          "postman-token": "9a64831b-b44f-501f-b94b-4528059aca82"
         }
       }
 

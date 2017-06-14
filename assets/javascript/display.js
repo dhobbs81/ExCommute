@@ -10,13 +10,22 @@ $(document).ready(function() {
 
 
 $("#search-button").on("click", function() {
-  $("#onboard-card").slideUp(1000);
-  $("#search-card").fadeIn(1000);
+  console.log("Search button clicked!!!");
+  $("#main-page").slideUp("fast");
+  $("#entry-page").fadeIn("slow");
+  $("#search-card").fadeIn("slow");
 });
 
 $("#submit-button").on("click", function() {
-  $("#entry-page").slideUp(1000);
-  $("#main-page").fadeIn(1000);
+  $("#entry-page").slideUp("fast");
+  $("#main-page").fadeIn("fast", function() {
+    var params = {};
+    params.address = $("#autocomplete").val().trim();
+    //var selectval = document.getElementById("range-select").value;
+    params.range = $("#range-select").val();
+    params.price = $("#price-select option:selected").text();
+    ExCommuteNs.showMap(params);
+  });
 });
 
 
@@ -53,7 +62,13 @@ function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete(
     /** @type {!HTMLInputElement} */
     (document.getElementById('autocomplete')), {
-      types: ['geocode']
+      //types: ['geocode', 'regions']
+      ///types: ['geocode']
+      //types: ['address'],
+      types: ['address'],
+      componentRestrictions: {
+        country: 'us'
+      }
     });
 
   // When the user selects an address from the dropdown, populate the address
@@ -65,15 +80,23 @@ function fillInAddress() {
   // Get the place details from the autocomplete object.
   var place = autocomplete.getPlace();
 
-  for (var component in componentForm) {
-    document.getElementById(component).value = '';
-    document.getElementById(component).disabled = false;
-  }
+  // for (var component in componentForm) {
+  //   document.getElementById(component).value = '';
+  //   document.getElementById(component).disabled = false;
+  // }
 
   // Get each component of the address from the place details
   // and fill the corresponding field on the form.
   for (var i = 0; i < place.address_components.length; i++) {
     var addressType = place.address_components[i].types[0];
+
+    var types = place.address_components[i].types;
+
+    console.log("Autocomplete dumping types: ");
+    types.forEach(function (item) {
+      console.log(item);
+    });
+
     if (componentForm[addressType]) {
       var val = place.address_components[i][componentForm[addressType]];
       document.getElementById(addressType).value = val;
