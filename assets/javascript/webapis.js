@@ -8,7 +8,7 @@
 
 /**
  * Include the ExCommute namespace
- * 
+ *
  * If the ExCommuteNs is undefined, then define ExCommuteNs.
  */
 var ExCommuteNs = (function (ns) {
@@ -17,13 +17,13 @@ var ExCommuteNs = (function (ns) {
 
 /**
  * Define the ExCommute WebApis namespace
- * 
+ *
  * JavaScript Module Pattern: In-Depth
  * See [JS Module Pattern]{@link http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html ModulePattern}
- * 
+ *
  * All of the code that runs inside the function lives in a closure, which
  * provides privacy and state throughout the lifetime of our application.
- * 
+ *
  * Pass the global jQuery object into the namespace
  */
 ExCommuteNs.WebApisNs = (function ($) {
@@ -68,13 +68,13 @@ ExCommuteNs.WebApisNs = (function ($) {
       });
       console.log("Params: " + parameters);
       ns.retrieveHouses(mapCallback, parameters);
-    } 
+    }
   }
 
   //called to set up ajax request and  set callback
   ns.retrieveHouses = function (mapCallback, params) {
     var url = "https://search.onboard-apis.com/propertyapi/v1.0.0/property/address";
-
+    console.log(params);
     // if (params) {
     //   parameters = $.param({
     //     'address1': params.address1,

@@ -113,5 +113,19 @@
   <div id="main-page">
     <div id="map"></div>
   </div>
+  <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-database.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDgjoDG3g3rTUTtpBjaDJormPitnzKEC3M",
+      authDomain: "excommute-cd036.firebaseapp.com",
+      databaseURL: "https://excommute-cd036.firebaseio.com",
+      projectId: "excommute-cd036",
+      storageBucket: "excommute-cd036.appspot.com",
+      messagingSenderId: "409555167143"
+    };
+    firebase.initializeApp(config);
+  </script>
 </body>
 </html>
