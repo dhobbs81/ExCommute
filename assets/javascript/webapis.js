@@ -100,6 +100,8 @@ ExCommuteNs.WebApisNs = (function ($) {
     } else {
       console.log("Making request to", url);
 
+      //"cache-control": "no-cache",
+      //"postman-token": "9a64831b-b44f-501f-b94b-4528059aca82"
       var settings = {
         "async": true,
         "crossDomain": true,
@@ -108,8 +110,6 @@ ExCommuteNs.WebApisNs = (function ($) {
         "headers": {
           "apikey": "e497790fddc100419fd40da7adce6d2c",
           "accept": "application/json",
-          "cache-control": "no-cache",
-          "postman-token": "9a64831b-b44f-501f-b94b-4528059aca82"
         }
       }
 
