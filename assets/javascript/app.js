@@ -46,12 +46,8 @@ var ExCommuteNs = (function (ns) {
     var map = {};
     var params = {};
 
-    ns.showMap = function() {
-        ExCommuteNs.MapNs.gotoWorkplace(map);
-    }
-
-    ns.setSearchParams = function (searchParams) {
-        params = searchParams;
+    ns.showMap = function(params) {
+        ExCommuteNs.MapNs.gotoAddress(map, params.address);
         ExCommuteNs.MapNs.showHouses(map, params.address, params.range);
     }
 
