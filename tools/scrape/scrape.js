@@ -8,6 +8,48 @@ var zipcodes = [ 32801, 32802, 32803, 32808, 32809, 32812, 32814, 32815, 32817, 
     32867, 32868, 32885, 32886, 32897, 32899, 32869, 32872, 32877, 32878, 32887,
     32891, 32896 ];
 
+
+function retrieveHouses(){
+  var url = "https://search.onboard-apis.com/propertyapi/v1.0.0/property/snapshot";
+
+  var parameters = "";
+
+  parameters = $.param({
+    'latitude': "10838 Heather Ridge Circle",
+    'longitude': "Orlando, FL 32817",
+    'radius': 10,
+    'orderby': "salesearchdate",
+    'propertytype': "APARTMENT",
+    'pagesize': 25
+  });
+
+  url += "?" + parameters;
+  console.log("URL: " + url);
+
+
+  console.log("Making request to", url);
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": url,
+    "method": "GET",
+    "headers": {
+      "apikey": "e497790fddc100419fd40da7adce6d2c",
+      "accept": "application/json",
+      "cache-control": "no-cache",
+      "postman-token": "9a64831b-b44f-501f-b94b-4528059aca82"
+    }
+  }
+
+    $.ajax(settings).done(function (response) {
+      //console.log(response);
+      console.log(response);
+      //var houses = ns.buildHouseObjects(response);
+    });
+}
+
+
 function houseRequests(){
 
   console.log(housesJSON.property[0]);
