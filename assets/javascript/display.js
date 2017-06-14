@@ -22,8 +22,7 @@ $("#submit-button").on("click", function() {
     //var selectval = document.getElementById("range-select").value;
     params.range = $("#range-select").val();
     params.price = $("#price-select option:selected").text();
-    ExCommuteNs.setSearchParams(params);
-    ExCommuteNs.showMap();
+    ExCommuteNs.showMap(params);
   });
 });
 

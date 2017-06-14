@@ -76,44 +76,28 @@ ExCommuteNs.MapNs = (function ($) {
   var iconPath = 'assets/media/';
   var workIcon = iconPath + 'work.png';
 
-  // Note: This example requires that you consent to location sharing when
-  // prompted by your browser. If you see the error "The Geolocation service
-  // failed.", it means you probably did not give permission for the browser to
-  // locate you.
-  // var map, infoWindow;
-  ns.initMap = function(zoom = 17) {
+   ns.initMap = function(zoom = 17) {
 
     var pos = { lat: 28.5881900, lng: -81.1998420 };
     setWorkplacePosition(pos);
+    setWorkplaceAddress("2380 Progress Drive, Orlando, FL, 32826");
 
     var map = new google.maps.Map(document.getElementById('map'), {
       center: pos,
       zoom: zoom,
-      fullscreenControl: true
+      fullscreenControl: true,
+      mapTypeControlOptions: {
+        //mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
+        //        'styled_map']
+        mapTypeIds: [ 'styled_map', 'satellite']
+      }
     });
 
-    var infoWindow = new google.maps.InfoWindow;
+    var styledMapType = getMapStyle();
 
-    // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        console.log("Got geolocation");
-        var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        setWorkplacePosition(pos);
-        //infoWindow.setPosition(pos);
-        //infoWindow.setContent('Location found.');
-        //infoWindow.open(map);
-        map.setCenter(pos);
-      }, function() {
-        handleLocationError(map, true, infoWindow, map.getCenter());
-      });
-    } else {
-      // Browser doesn't support Geolocation
-      handleLocationError(map, false, infoWindow, map.getCenter());
-    }
+    // Associate the styled map with the MapTypeId and set it to display.
+    map.mapTypes.set('styled_map', styledMapType);
+    map.setMapTypeId('styled_map');
 
     // If the window resizes, recenter the map
     google.maps.event.addDomListener(window, 'resize', function() {
@@ -128,6 +112,296 @@ ExCommuteNs.MapNs = (function ($) {
     return map;
   }
 
+  function getMapStyle() {
+
+    // Create a new StyledMapType object, passing it an array of styles,
+    // and the name to be displayed on the map type control.
+    var styledMapType = new google.maps.StyledMapType(
+    [
+      {
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#ebe3cd"
+          }
+        ]
+      },
+      {
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#523735"
+          }
+        ]
+      },
+      {
+        "elementType": "labels.text.stroke",
+        "stylers": [
+          {
+            "color": "#f5f1e6"
+          }
+        ]
+      },
+      {
+        "featureType": "administrative",
+        "elementType": "geometry.stroke",
+        "stylers": [
+          {
+            "color": "#c9b2a6"
+          }
+        ]
+      },
+      {
+        "featureType": "administrative.land_parcel",
+        "elementType": "geometry.stroke",
+        "stylers": [
+          {
+            "color": "#dcd2be"
+          }
+        ]
+      },
+      {
+        "featureType": "administrative.land_parcel",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#ae9e90"
+          }
+        ]
+      },
+      {
+        "featureType": "landscape.natural",
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#dfd2ae"
+          }
+        ]
+      },
+      {
+        "featureType": "poi",
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#dfd2ae"
+          }
+        ]
+      },
+      {
+        "featureType": "poi",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#93817c"
+          }
+        ]
+      },
+      {
+        "featureType": "poi.attraction",
+        "stylers": [
+          {
+            "visibility": "on"
+          },
+          {
+            "weight": 4
+          }
+        ]
+      },
+      {
+        "featureType": "poi.business",
+        "stylers": [
+          {
+            "visibility": "off"
+          },
+          {
+            "weight": 2.5
+          }
+        ]
+      },
+      {
+        "featureType": "poi.park",
+        "elementType": "geometry.fill",
+        "stylers": [
+          {
+            "color": "#a5b076"
+          }
+        ]
+      },
+      {
+        "featureType": "poi.park",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#447530"
+          }
+        ]
+      },
+      {
+        "featureType": "road",
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#f5f1e6"
+          }
+        ]
+      },
+      {
+        "featureType": "road",
+        "elementType": "labels.icon",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "road.arterial",
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#fdfcf8"
+          }
+        ]
+      },
+      {
+        "featureType": "road.arterial",
+        "elementType": "labels",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "road.highway",
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#f8c967"
+          }
+        ]
+      },
+      {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+          {
+            "color": "#e9bc62"
+          }
+        ]
+      },
+      {
+        "featureType": "road.highway",
+        "elementType": "labels",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "road.highway.controlled_access",
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#e98d58"
+          }
+        ]
+      },
+      {
+        "featureType": "road.highway.controlled_access",
+        "elementType": "geometry.stroke",
+        "stylers": [
+          {
+            "color": "#db8555"
+          }
+        ]
+      },
+      {
+        "featureType": "road.local",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "road.local",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#806b63"
+          }
+        ]
+      },
+      {
+        "featureType": "transit",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "transit.line",
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#dfd2ae"
+          }
+        ]
+      },
+      {
+        "featureType": "transit.line",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#8f7d77"
+          }
+        ]
+      },
+      {
+        "featureType": "transit.line",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+          {
+            "color": "#ebe3cd"
+          }
+        ]
+      },
+      {
+        "featureType": "transit.station",
+        "elementType": "geometry",
+        "stylers": [
+          {
+            "color": "#dfd2ae"
+          }
+        ]
+      },
+      {
+        "featureType": "water",
+        "elementType": "geometry.fill",
+        "stylers": [
+          {
+            "color": "#b9d3c2"
+          }
+        ]
+      },
+      {
+        "featureType": "water",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          {
+            "color": "#92998d"
+          }
+        ]
+      }
+    ],
+    { name: 'Road Map' });
+    return styledMapType;
+
+  }
+
   var currentWorkplacePosition = {};
   function getWorkplacePosition() {
     return currentWorkplacePosition;
@@ -137,14 +411,16 @@ ExCommuteNs.MapNs = (function ($) {
       position: { lat: pos.lat, lng: pos.lng }
     });
   }
-
-  function handleLocationError(map, browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    // infoWindow.setContent(browserHasGeolocation ?
-    //                       'Error: The Geolocation service failed.' :
-    //                       'Error: Your browser doesn\'t support geolocation.');
-    // infoWindow.open(map);
+  var currentWorkplaceAddress = "";
+  function setWorkplaceAddress(address) {
+    if (address) {
+      currentWorkplaceAddress = address;
+    }
   }
+  function getWorkplaceAddress() {
+    return currentWorkplaceAddress;
+  }
+
   var houseMarkers = [];
   ns.showHouses = function(map, address, distance) {
 
@@ -212,24 +488,27 @@ ExCommuteNs.MapNs = (function ($) {
         var contentString = 
           '<div id="iw-container">' +
           '<div class="iw-title">$' + loc.price + '<br>' + driveTimeRoundedMinutes + ' min</div>' +
-          //'<div class="iw-content">' +
-            //'<div class="iw-subTitle">' + loc.duration + '</div>' +
-            //'<p>' + driveTimeRoundedMinutes + '</p>' +
-            //'<img src="images/vistalegre.jpg" alt="Porcelain Factory of Vista Alegre" height="115" width="83">' +
-            //'<p>Founded in 1824, the Porcelain Factory of Vista Alegre was the first industrial unit dedicated to porcelain production in Portugal. For the foundation and success of this risky industrial development was crucial the spirit of persistence of its founder, José Ferreira Pinto Basto. Leading figure in Portuguese society of the nineteenth century farm owner, daring dealer, wisely incorporated the liberal ideas of the century, having become "the first example of free enterprise" in Portugal.</p>' +
-            //'<div class="iw-subTitle">Contacts</div>' +
-            //'<p>VISTA ALEGRE ATLANTIS, SA<br>3830-292 Ílhavo - Portugal<br>'+
-            //'<br>Phone. +351 234 320 600<br>e-mail: geral@vaa.pt<br>www: www.myvistaalegre.com</p>'+
+          //'<div class="iw-content" id="iw-directions">' +
+          //'<div class="iw-subTitle">' + loc.duration + '</div>' +
+          //'<p>' + driveTimeRoundedMinutes + '</p>' +
+          //'<img src="images/vistalegre.jpg" alt="Porcelain Factory of Vista Alegre" height="115" width="83">' +
+          //'<p>Founded in 1824, the Porcelain Factory of Vista Alegre was the first industrial unit dedicated to porcelain production in Portugal. For the foundation and success of this risky industrial development was crucial the spirit of persistence of its founder, José Ferreira Pinto Basto. Leading figure in Portuguese society of the nineteenth century farm owner, daring dealer, wisely incorporated the liberal ideas of the century, having become "the first example of free enterprise" in Portugal.</p>' +
+          //'<div class="iw-subTitle">Contacts</div>' +
+          //'<p>VISTA ALEGRE ATLANTIS, SA<br>3830-292 Ílhavo - Portugal<br>'+
+          //'<br>Phone. +351 234 320 600<br>e-mail: geral@vaa.pt<br>www: www.myvistaalegre.com</p>'+
           //'</div>' +
           '<div class="iw-bottom-gradient"></div>' +
           '</div>';
+
+        var directionsDisplay = new google.maps.DirectionsRenderer();
 
         var infowindow = new google.maps.InfoWindow({
           content: contentString,
           // Assign a maximum value for the width of the infowindow allows
           // greater control over the various content elements
           maxWidth: 100,
-          parentMarker: marker
+          parentMarker: marker,
+          directions: directionsDisplay
         });
 
         setupInfoWindow(infowindow);
@@ -238,11 +517,42 @@ ExCommuteNs.MapNs = (function ($) {
 
         marker.addListener('click', function() {
           infowindows.forEach(function(iw) {
+              //iw.directions.setMap(null);
+              //iw.directions.setDirections(null);
+              iw.directions.setMap(null);
               iw.parentMarker.setAnimation(null);
               iw.close();
           });
           infowindow.open(map, marker);
           marker.setAnimation(google.maps.Animation.BOUNCE);
+          
+          var options = {
+            markerOptions: { visibility: false, opacity: 0.0 },
+            preserveViewport: true
+          };
+          infowindow.directions.setOptions(options);
+
+          infowindow.directions.setMap(map);
+
+
+          var drivingDirectionsRequest =
+          {
+            origin: loc.address,
+            destination: getWorkplaceAddress(),
+            travelMode: 'DRIVING',
+            drivingOptions: {
+              departureTime: new Date(Date.now() + ((1000 * 60) * 5)),  // for the time N milliseconds from now.
+              trafficModel: 'optimistic'
+            }
+          };
+
+          var directionsService = new google.maps.DirectionsService();
+          directionsService.route(drivingDirectionsRequest, function(response, status) {
+             if (status == 'OK') {
+               infowindow.directions.setDirections(response);
+             }
+          });
+
         });
 
         // Event that closes the Info Window with a click on the map
@@ -335,7 +645,7 @@ ExCommuteNs.MapNs = (function ($) {
 
   ns.gotoAddress = function(map, address) {
 
-    var place = { address: "2380 Progress Drive, Orlando, FL" };
+    var place = { address: getWorkplaceAddress() };
 
     if (address) {
       place.address = address;
@@ -350,13 +660,28 @@ ExCommuteNs.MapNs = (function ($) {
           console.log("Failed to get geodetic coordinates for address: " + place.address);
         }
         else {
+          var goldStar = {
+            path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
+            fillColor: 'yellow',
+            fillOpacity: 0.8,
+            scale: 0.1,
+            strokeColor: 'gold',
+            strokeWeight: 5
+          };
 
-          console.log("Panning to lat: " + place.lat + " lng: " + place.lng);
           var posMarker = new google.maps.Marker({
-            position: { lat: place.lat, lng: place.lng }
+            position: { lat: place.lat, lng: place.lng },
+            icon: goldStar,
+            map: map
           });
+
+          // If the map is being drawn, trigger an event to force a redraw
+          google.maps.event.trigger(map, 'resize');
+
           map.panTo(posMarker.getPosition());
           setWorkplacePosition({ lat: place.lat, lng: place.lng });
+          setWorkplaceAddress(place.address);
+
         }
     });
   }
